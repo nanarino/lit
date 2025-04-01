@@ -1,0 +1,68 @@
+---
+import App from "@/layouts/app.astro"
+---
+
+<App title="分頁器">
+    <script>
+        import "@/lib/Pagination"
+    </script>
+    <section>
+        <na-pagination></na-pagination>
+        <na-pagination total={1}></na-pagination>
+        <na-pagination total={4}></na-pagination>
+        <na-pagination total={7}></na-pagination>
+        <na-pagination total={10} data-primary="danger"></na-pagination>
+        <na-pagination total={36} data-primary="success"></na-pagination>
+    </section>
+    <script>
+        import { message } from "@/scripts/client/message"
+        type Primary = "success" | "danger" | "warning"
+        async function onload() {
+            // code-ignore-start
+            const loadingElements = document.querySelectorAll(":not(:defined)")
+            const tags = new Set([...loadingElements].map(ele => ele.localName))
+            await Promise.all(
+                [...tags].map(tag => customElements.whenDefined(tag))
+            )
+            // code-ignore-end
+            for (const element of document.querySelectorAll("na-pagination")) {
+                element.addEventListener("page-to", function (e) {
+                    // e.preventDefault() 阻止翻頁
+                    message({
+                        content: `${(e as CustomEvent<number>).detail}`,
+                        primary: (element.dataset.primary as Primary) || true,
+                        duration: 200,
+                    })
+                })
+                element.onChange = current => {
+                    // 并非事件
+                    // 翻頁被阻止時不觸發
+                    console.log(current)
+                }
+            }
+        }
+
+        // code-ignore-start
+        document.addEventListener("astro:after-swap", e => {
+            if (e.target) {
+                const pathname = (e.target as Document).location.pathname
+                const base = import.meta.env.BASE_URL
+                const component = pathname
+                    .replace(RegExp(`^${base}`), "")
+                    .replace(/\/$/, "")
+                if (component === "na-pagination") onload()
+            }
+        })
+        // code-ignore-end
+
+        onload()
+    </script>
+</App>
+
+<style>
+    section {
+        padding: 2rem;
+        display: grid;
+        gap: 36px;
+    }
+</style>

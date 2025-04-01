@@ -1,0 +1,27 @@
+---
+import ChienChiaF from "@/assets/fonts/ChienChia-F.styl?url"
+import jetbrainsMono from "@fontsource/jetbrains-mono/400.css?url"
+---
+
+<link
+    rel="stylesheet"
+    href={ChienChiaF}
+    data-nanarino-lit-provide
+    onload="document.documentElement.style.setProperty('--font-family-base', 'ChienChia-F')"
+/>
+<link
+    rel="stylesheet"
+    href={jetbrainsMono}
+    data-nanarino-lit-provide
+    onload="document.documentElement.style.setProperty('--font-family-mono', 'JetBrains Mono, ChienChia-F')"
+/>
+<script>
+    document.addEventListener("astro:after-swap", () => {
+        const root = document.documentElement
+        root.style.setProperty("--font-family-base", "ChienChia-F")
+        root.style.setProperty(
+            "--font-family-mono",
+            `JetBrains Mono, ChienChia-F`
+        )
+    })
+</script>

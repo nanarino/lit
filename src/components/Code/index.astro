@@ -1,0 +1,148 @@
+---
+import { readFile } from "node:fs/promises"
+import { Code } from "astro:components"
+import parse from "style-to-object"
+import dedent from "dedent"
+import {
+    transformerNotationDiff,
+    transformerNotationWordHighlight,
+} from "@shikijs/transformers"
+
+interface Props {
+    code?: string
+    lang?: Parameters<typeof Code>[0]["lang"]
+}
+
+const base = import.meta.env.BASE_URL
+const components = Astro.url.pathname
+    .replace(RegExp(`^${base}`), "")
+    .replace(/\/$/, "")
+let code: string | undefined = Astro.props.code
+const is_spec = !code && components
+if (is_spec) {
+    const html = await readFile(`./src/pages/${components}.astro`, {
+        encoding: "utf8",
+    })
+    code = html.match(/<App(?:\s[^>]*)?>([\s\S]*?)<\/App>/)?.[1]
+    if (code) {
+        code += "\t" // 末行係空行沒有高度 加一個縮進就好
+
+        // 忽略某些行：
+
+        // code-ignore-start
+        // ...
+        // code-ignore-end
+
+        // 不支援嵌套
+        code = code.replace(
+            /(\s)*\/\/ code-ignore-start[\s\S]*?\/\/ code-ignore-end/g,
+            ""
+        )
+    }
+}
+
+const lang: Parameters<typeof Code>[0]["lang"] = Astro.props.lang ?? "astro"
+
+const themes: Parameters<typeof Code>[0]["themes"] = {
+    dark: "material-theme-darker",
+    light: "material-theme-lighter",
+}
+const transformers: Parameters<typeof Code>[0]["transformers"] = [
+    {
+        pre(node) {
+            if (is_spec) {
+                node.properties.class = "na-pre na-pre-components-spec"
+            } else {
+                node.properties.class = "na-pre"
+            }
+            node.properties.style = null
+            // outline 焦點效果
+            // node.properties.tabindex = null
+        },
+        code(node) {
+            this.addClassToHast(node, ["na-code"])
+        },
+        span(node) {
+            const style = parse((node.properties.style || "") as string)
+            const light = style?.color
+            const dark = style?.["--shiki-dark"]
+            if (light && dark) {
+                node.properties.style = dedent`
+                    --color-code: from ${light} r g b;
+                    --color-code-dark: from ${dark} r g b;
+                `
+            }
+        },
+    },
+    transformerNotationDiff(),
+    transformerNotationWordHighlight(),
+]
+---
+
+{
+    code &&
+        (is_spec ? (
+            <aside>
+                <section class="na-watermark">
+                    <Code
+                        code={code}
+                        lang={lang}
+                        themes={themes}
+                        transformers={transformers}
+                    />
+                </section>
+            </aside>
+        ) : (
+            <section class="na-watermark">
+                <Code
+                    code={code}
+                    lang={lang}
+                    themes={themes}
+                    transformers={transformers}
+                />
+            </section>
+        ))
+}
+
+<style>
+    aside {
+        margin: 2rem;
+        border-radius: var(--border-radius-lg);
+        overflow: hidden;
+
+        & :global(.na-pre-components-spec) {
+            /** 與aside、section一致 在出現outline時表現正常  */
+            border-radius: var(--border-radius-lg);
+            /** 對冲左側縮進 */
+            padding-right: 5em;
+            margin: 0;
+        }
+    }
+
+    section {
+        --border-radius-watermark: var(--border-radius-lg);
+    }
+</style>
+
+<style is:global>
+    .line.diff.add {
+        background-color: rgb(var(--success-1));
+    }
+    .line.diff.remove {
+        background-color: rgb(var(--danger-1));
+    }
+    .highlighted-word {
+        border: 2pt solid rgb(var(--primary-3));
+        border-radius: var(--border-radius-sm);
+    }
+
+    body:has(.na-pre-components-spec) {
+        display: flex;
+        @media screen and (max-width: 1024px) {
+            flex-direction: column;
+        }
+        & section {
+            flex: auto;
+        }
+    }
+</style>

@@ -1,0 +1,174 @@
+---
+import Code from "../Code/index.astro"
+import dedent from "dedent"
+// 就一個 readme 不想引入 mdx
+---
+
+<h3 class="na-title">先決條件</h3>
+
+<Code
+    code={dedent`
+        pnpm i nanarinostyl
+    `}
+    lang="shell"
+/>
+
+<p class="na-paragraph">
+    這裏設置了一個辨識度比較高的蒹葭楷F（ ChienChiaF
+    港標繁體，使用台標字型可能顯示不出喔），用來檢驗樣式有否正確注入shadowDOM（有没覺得
+    astral party 都是這個字體）
+</p>
+
+<Code
+    code={dedent`
+        ---
+        // [!code word:data-nanarino-lit-provide]
+        import nanarinostyl from "nanarinostyl?url"
+        import ChienChiaF from "@/assets/fonts/ChienChia-F.styl?url"
+        ---
+        <html lang="zh-HK">
+            <head>
+                <!-- 先引入樣式套件 並標記 -->
+                <link rel="stylesheet" href={nanarinostyl} data-nanarino-lit-provide />
+                <link 
+                    rel="stylesheet"
+                    href={ChienChiaF}
+                    data-nanarino-lit-provide
+                    onload="document.documentElement.style.setProperty('--font-family-base', 'ChienChia-F')"
+                />
+                <!-- 初始化客户端 -->
+                <script src="@/scripts/client/init"></script>
+            </head>
+            <body>
+                <slot />
+            </body>
+        </html>
+    `}
+/>
+
+<h4 class="na-title">套用元件</h4>
+
+<p class="na-paragraph">
+    元件暫時未計劃發佈到
+    <a class="na-code na-link" href="https://www.npmjs.com/" target="_blank">
+        npm
+    </a> ，可以從源程式碼自订構建出
+    <code class="na-code na-code-no-bg">na-lit</code>
+    （ <code class="na-code">na-lit/dist/all.js</code>或按需 ） 放置在自己專案的 <code
+        class="na-code na-code-no-bg">assets</code
+    > 或 <code class="na-code na-code-no-bg">public</code> 目錄中， 或者直接拷貝到自己的專案
+</p>
+
+<Code
+    code={dedent`
+        // package.json
+        
+        {
+            "dependencies": {
+                "@nanarinostyl/lit": "github:nanarino/na-lit#prepare", // [!code ++]
+            },
+            "pnpm": {
+                "overrides": {
+                    "nanarinostyl": "$nanarinostyl", // [!code ++]
+                }
+            }
+        }
+    `}
+    lang="jsonc"
+/>
+
+<p class="na-paragraph">
+    分支 <code class="na-code na-code-no-bg">#prepare</code> 安裝時觸發自動構建,
+    在ts的裝飾器默認開啓之前是<b>必須</b>的
+</p>
+
+<Code
+    code={dedent`
+        pnpm update @nanarinostyl/lit
+    `}
+    lang="shell"
+/>
+
+<p class="na-paragraph">為了減小包體積，樣式是額外注入的</p>
+<p class="na-paragraph">
+    實際上這裡利用的
+    <code class="na-code na-code-no-bg">LitElement.prototype.styles</code>
+    就是原生的
+    <code class="na-code na-code-no-bg">shadowRoot.adoptedStyleSheets</code>
+    (不可用時回退)
+</p>
+
+<Code
+    code={dedent`
+        // [!code word:data-nanarino-lit-provide]
+        // import 立即宣告元件 作為副作用
+        import { NanarinoLitComponent } from "@nanarinostyl/lit/dist/all.js"
+        // 或按需:
+        import { NanarinoLitComponent } from "@nanarinostyl/lit/dist/base"
+
+        const provides = Array.from(
+            document.querySelectorAll("link[data-nanarino-lit-provide]")
+        ) as HTMLLinkElement[]
+
+        for (const css of provides
+            .reduce(
+                (rules: CSSRule[], link) => [...rules, ...(link.sheet?.cssRules ?? [])],
+                []
+            )
+            .reverse()) {
+            // 點解要用try 見 https://github.com/nanarino/na-lit/issues/1
+            try {
+                NanarinoLitComponent.adoptedStyle.insertRule(css.cssText)
+            } catch (error) {
+                console.warn(error)
+            }
+        }
+    `}
+    lang="typescript"
+/>
+
+<p class="na-paragraph">頁面中使用，如</p>
+
+<Code
+    code={dedent`
+        <section>
+            <na-pagination total="36"></na-pagination>
+        </section>
+    `}
+/>
+
+<p class="na-paragraph">
+    按需須要單獨宣告，如 (
+    <code class="na-code"
+        >import "@nanarinostyl/lit/dist/Pagination/index.js"</code
+    >
+    以使用 <code class="na-code na-code-no-bg">{`<na-pagination />`}</code>)
+</p>
+
+<h4 class="na-title">
+    避免
+    <a
+        class="na-link"
+        href="https://en.wikipedia.org/wiki/Flash_of_unstyled_content"
+        target="_blank"
+    >
+        FOUC
+    </a>
+</h4>
+
+<p class="na-paragraph">不只本套件，這對於所有元件適用</p>
+
+<Code
+    code={dedent`
+        na-svg-icon:not(:defined) {
+            opacity: 0;
+        }
+    `}
+    lang="css"
+/>
+
+<style>
+    .na-code-no-bg {
+        --background-color-code: 0 0 0 / 0;
+    }
+</style>

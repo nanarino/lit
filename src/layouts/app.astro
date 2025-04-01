@@ -1,0 +1,70 @@
+---
+import { ClientRouter } from "astro:transitions"
+import customstyl from "@/styles/custom.styl?url"
+import themeIIFE from "@holy-two/data-theme/dist/iife?url"
+import iconifyIIFE from "iconify-icon/dist/iconify-icon.min?url"
+import cssDoodleIIFE from "css-doodle?url"
+import ThemeToggle from "@/components/ThemeToggle/index.astro"
+import Code from "@/components/Code/index.astro"
+import Footer from "@/components/Footer/index.astro"
+import FontInject from "@/components/FontInject.astro"
+
+interface Props {
+    title?: string
+    github?: string
+    frontmatter?: {
+        title?: string
+        github?: string
+    }
+}
+const title = Astro.props.title || Astro.props.frontmatter?.title || "na-lit"
+const github = Astro.props.github || Astro.props.frontmatter?.github
+---
+
+<html lang="zh-HK">
+    <head>
+        <meta charset="UTF-8" />
+        <title>{title}</title>
+        <meta name="generator" content={Astro.generator} />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <link
+            rel="icon"
+            type="image/svg+xml"
+            href={import.meta.env.BASE_URL + "clover.svg"}
+        />
+        <link rel="stylesheet" href={customstyl} data-nanarino-lit-provide />
+        <style is:inline>
+            *:not(:defined) {
+                display: none;
+            }
+        </style>
+        <script is:inline fetchpriority="high" src={themeIIFE}></script>
+        <FontInject />
+        <ClientRouter />
+        <script is:inline src={iconifyIIFE}></script>
+        <script is:inline src={cssDoodleIIFE}></script>
+        <script src="@/scripts/client/init"></script>
+    </head>
+    <body>
+        <ThemeToggle style="opacity: .8" />
+        <slot />
+        <Code />
+        <Footer github={github} />
+    </body>
+</html>
+
+<style>
+    body {
+        width: 100%;
+        overflow-x: hidden;
+        padding: 0;
+        margin: 0;
+        min-height: 100vh;
+
+        @supports (min-height: 100dvh) {
+            & {
+                min-height: 100dvh;
+            }
+        }
+    }
+</style>

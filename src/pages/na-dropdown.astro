@@ -1,0 +1,149 @@
+---
+import App from "@/layouts/app.astro"
+---
+
+<App title="下拉氣泡">
+    <script>
+        import {
+            getChromeVersion,
+            getSafariVersion,
+        } from "@/scripts/client/browser"
+        if (getChromeVersion() >= 125 || getSafariVersion() >= 26) {
+            import("@/lib/Dropdown/next")
+        } else {
+            // 相容實現，點擊元件外部無法關閉， WIN 7 可用
+            import("@/lib/Dropdown")
+        }
+        // 簡易實現，可配置項少
+        // import "@/lib/Dropdown/simple"
+    </script>
+    <section>
+        <!-- `closetarget="[type=submit]"` 自訂點擊内部時自動關閉條件 -->
+        <!-- `closesoon="true"` 點擊内部時 立即關閉（該處係 astro 的 [attr] 渲染為 [attr="true"]🫡）-->
+        <na-dropdown closetarget="[type=submit]" closesoon>
+            <button class="na-button"> 連絡先 </button>
+            <button class="na-button" slot="dropdown" type="submit">
+                <iconify-icon icon="line-md:email" width="16" height="16">
+                </iconify-icon>
+                <span> email </span>
+            </button>
+            <button class="na-button" slot="dropdown" data-primary>
+                <iconify-icon icon="line-md:twitter" width="16" height="16">
+                </iconify-icon>
+                <span> twitter </span>
+            </button>
+            <button class="na-button" slot="dropdown" data-primary>
+                <iconify-icon icon="line-md:instagram" width="16" height="16">
+                </iconify-icon>
+                <span> instagram </span>
+            </button>
+        </na-dropdown>
+
+        <hr class="na-divider" />
+
+        <!-- `dialog-popover="manual"` 會禁用自動關閉 -->
+        <!-- `dialog-style="inset:unset;"` 自訂定位和偏移樣式 -->
+        <na-dropdown
+            dialog-popover="manual"
+            dialog-style="left: unset; transform: unset; right: anchor(right);"
+        >
+            <button class="na-button" style="--color-button: var(--red-6);">
+                <iconify-icon
+                    icon="line-md:youtube-filled"
+                    width="24"
+                    height="24"
+                >
+                </iconify-icon>
+            </button>
+            <button class="na-button" slot="dropdown">
+                <iconify-icon icon="line-md:thumbs-up" width="16" height="16">
+                </iconify-icon>
+                <span> I Like </span>
+            </button>
+            <button class="na-button" slot="dropdown">
+                <iconify-icon icon="line-md:star" width="16" height="16">
+                </iconify-icon>
+                <span> Add Star </span>
+            </button>
+            <button class="na-button" slot="dropdown">
+                <iconify-icon
+                    icon="line-md:download-outline"
+                    width="16"
+                    height="16"
+                >
+                </iconify-icon>
+                <span> Download </span>
+            </button>
+        </na-dropdown>
+    </section>
+    <script>
+        async function onload() {
+            // code-ignore-start
+            const loadingElements = document.querySelectorAll(":not(:defined)")
+            const tags = new Set([...loadingElements].map(ele => ele.localName))
+            await Promise.all(
+                [...tags].map(tag => customElements.whenDefined(tag))
+            )
+            // code-ignore-end
+            for (const element of document.querySelectorAll("na-dropdown")) {
+                // 程式控制氣泡框
+                // element.toggle()
+
+                if (!element.dialog) continue
+
+                // 程式控制氣泡框（index）：
+                // element.dialog.open = true
+                // element.dialog.open = false // 不要用這個 有監聽 @close 副作用
+                // element.dialog.show()
+                // element.dialog.close()
+
+                // 程式控制氣泡框（next/simple）：
+                // dialog.togglePopover()
+                // dialog.showPopover()
+                // dialog.hidePopover()
+            }
+        }
+
+        // code-ignore-start
+        document.addEventListener("astro:after-swap", e => {
+            if (e.target) {
+                const pathname = (e.target as Document).location.pathname
+                const base = import.meta.env.BASE_URL
+                const component = pathname
+                    .replace(RegExp(`^${base}`), "")
+                    .replace(/\/$/, "")
+                if (component === "na-dropdown") onload()
+            }
+        })
+        // code-ignore-end
+
+        onload()
+    </script>
+    <style>
+        [slot="dropdown"] {
+            gap: 4px;
+        }
+
+        [dialog-popover="manual"] {
+            align-self: end;
+        }
+    </style>
+</App>
+
+<style>
+    section {
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+    }
+
+    hr {
+        width: 100%;
+    }
+
+    iconify-icon {
+        width: attr(width px);
+        height: attr(height px);
+    }
+</style>

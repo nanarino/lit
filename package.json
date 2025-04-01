@@ -1,0 +1,58 @@
+{
+    "name": "@nanarinostyl/lit",
+    "type": "module",
+    "version": "0.0.1",
+    "main": "./dist/all.js",
+    "scripts": {
+        "dev": "astro dev --host",
+        "build": "vite build",
+        "build:docs": "astro build",
+        "build:gh-pages": "astro build --base /na-lit/",
+        "preview": "astro preview"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/nanarino/na-lit.git"
+    },
+    "homepage": "https://nanarino.github.io/na-lit/",
+    "keywords": [
+        "ui",
+        "lit"
+    ],
+    "author": "kogawananari",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/nanarino/na-lit/issues"
+    },
+    "peerDependencies": {
+        "nanarinostyl": "^0.12.2"
+    },
+    "dependencies": {
+        "lit": "^3.3.1"
+    },
+    "devDependencies": {
+        "@fontsource/jetbrains-mono": "^5.2.6",
+        "@holy-two/data-theme": "^0.0.6",
+        "@holy-two/vite-plugin-alias": "^0.0.2",
+        "@microsoft/api-extractor": "^7.52.11",
+        "@shikijs/transformers": "^3.12.1",
+        "@types/node": "^22.18.0",
+        "astro": "^5.13.5",
+        "css-doodle": "^0.42.6",
+        "dedent": "^1.6.0",
+        "iconify-icon": "^2.3.0",
+        "style-to-object": "^1.0.9",
+        "unplugin-dts": "1.0.0-beta.6",
+        "vite": "^6.3.5"
+    },
+    "pnpm": {
+        "overrides": {
+            "vite": "$vite"
+        }
+    },
+    "files": [
+        "dist",
+        "src/lib",
+        "src/assets"
+    ]
+}

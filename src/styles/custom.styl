@@ -1,0 +1,31 @@
+@require 'nanarinostyl/lib/mixins/*'
+// base
+@require 'nanarinostyl/lib/variables/*'
+
+/**
+ * 使通配符引入时要确保引入的优先级 譬如：含有的 `&>*` 选择器被 `&` 覆盖
+ */
+@require 'nanarinostyl/lib/common/*'
+// typography / markdown
+@require 'nanarinostyl/lib/typography/*'
+// components
+@require 'nanarinostyl/lib/components/*'
+
+// custom primary
+color_alias_dict = {
+    primary: 'magenta',
+    success: 'green',
+    danger: 'red',
+    warning: 'orange'
+}
+:root
+    for k, v in color_alias_dict
+        for i in range(1 10)
+            {_get_var_by(k, i)} var(_get_var_by(v, i))
+
+        if k != 'primary'
+            [data-primary={k}]
+                for i in range(1 10)
+                    {_get_var_by('primary', i)} var(_get_var_by(k, i))
+    
+    --outline-color-focus var(--black)

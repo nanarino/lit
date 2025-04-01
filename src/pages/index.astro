@@ -1,0 +1,158 @@
+---
+import App from "@/layouts/app.astro"
+import lit from "@/assets/lit.svg?raw"
+import clover from "@/assets/clover.svg?raw"
+import fib from "@/assets/fib.styl?raw"
+import Menu from "@/components/Menu/index.astro"
+import ReadMe from "@/components/ReadMe/index.astro"
+import { getMenu } from "@/scripts/server/menu"
+
+const menu = await getMenu("./src/pages")
+const base = import.meta.env.BASE_URL
+---
+
+<App github="https://github.com/nanarino/na-lit">
+    <header>
+        <css-doodle>{fib}</css-doodle>
+
+        <nav class="logo">
+            <a
+                class="clover"
+                title="nanarinostyl"
+                href="https://nanarino.github.io/stylus/"
+                target="_blank"
+            >
+                <Fragment set:html={clover} />
+                <i>nanarino stylus design</i>
+            </a>
+            <a class="lit" title="lit" href="https://lit.dev/" target="_blank">
+                <Fragment set:html={lit} />
+                <i>lit element</i>
+            </a>
+        </nav>
+        <h1 class="na-font-mono" style="font-size: 5.5rem;font-weight: 400;">
+            {"<na-lit/>"}
+        </h1>
+        <p class="na-paragraph" data-size="4" style="margin: 0;">
+            一個<span class="na-font-mono">
+                nanarinostyl
+            </span>設計語言試作的<span class="na-font-mono"> lit </span>元件合集
+        </p>
+    </header>
+    <nav class="pages">
+        <h2 class="na-title" style="padding: 0 2rem;">元件列表</h2>
+        <Menu menu={menu} base={base} />
+    </nav>
+    <main class="readme">
+        <h2 class="na-title">食用方式</h2>
+        <ReadMe />
+    </main>
+</App>
+
+<style>
+    header {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        user-select: none;
+        display: grid;
+        gap: 16px;
+        align-content: center;
+        height: 100vh;
+
+        @supports (height: 100dvh) {
+            & {
+                height: 100dvh;
+            }
+        }
+
+        css-doodle {
+            position: absolute;
+            inset: 0;
+        }
+
+        h1,
+        p {
+            text-align: center;
+            margin: 0;
+            z-index: 6;
+            mix-blend-mode: difference;
+            color: #0f0;
+            :root[data-theme="dark"] & {
+                color: #f0f;
+            }
+        }
+    }
+
+    nav.logo {
+        display: grid;
+        grid-template-rows: repeat(2, min-content);
+        grid-template-columns: repeat(2, min-content);
+        justify-content: center;
+        align-content: center;
+
+        & a {
+            display: inline-flex;
+            position: relative;
+            border-radius: 50%;
+
+            & i {
+                font-size: 0;
+            }
+
+            & :global(svg) {
+                width: 6em;
+                height: 6em;
+                padding: 1.5em;
+                mix-blend-mode: difference;
+            }
+        }
+    }
+
+    a.clover :global(path) {
+        transition: 0.3s;
+
+        :root:where([data-theme="light"]) & {
+            --pinkpurple-6: var(--green-6);
+        }
+
+        &:hover {
+            --pinkpurple-6: var(--lime-6);
+            transform: scale(1.05) translate(-12px, -12px);
+        }
+    }
+
+    a.lit :global(svg) {
+        transition: 0.3s;
+
+        :root:where([data-theme="light"]) & {
+            --magenta-5: var(--green-3);
+            --pinkpurple-5: var(--green-7);
+            --magenta-7: var(--green-5);
+            --pinkpurple-7: var(--green-9);
+            &:hover {
+                --magenta-5: var(--lime-3);
+                --pinkpurple-5: var(--yellow-7);
+                --magenta-7: var(--lime-5);
+                --pinkpurple-7: var(--yellow-9);
+            }
+        }
+
+        &:hover {
+            --magenta-5: var(--blue-3);
+            --pinkpurple-5: var(--cyan-7);
+            --magenta-7: var(--blue-5);
+            --pinkpurple-7: var(--cyan-9);
+        }
+    }
+
+    nav.pages {
+        padding: 2em;
+        background-color: rgb(var(--black));
+        color: rgb(var(--gray-1));
+    }
+
+    main.readme {
+        padding: 4em;
+    }
+</style>
