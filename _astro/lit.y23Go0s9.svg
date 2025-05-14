@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 200" width="16" height="20">
+<path fill="oklch(var(--magenta-7, 0.664 0.227 353))" d="M40 120l20-60l90 90l-30 50l-40-40h-20"></path>
+<path fill="oklch(var(--pinkpurple-7, 0.664 0.227 328))" d="M80 160 L80 80 L120 40 L 120 120 M0 160 L40 200 L40 120 L20 120"></path>
+<path fill="oklch(var(--pinkpurple-5, 0.799 0.227 328))" d="M40 120v-80l40-40v80M120 200v-80l40-40v80M0 160v-80l40 40"></path>
+<path fill="oklch(var(--magenta-5, 0.799 0.227 353))" d="M40 200v-80l40 40"></path>
+</svg>

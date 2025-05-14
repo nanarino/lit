@@ -1,0 +1,1 @@
+import{t as e}from"./base.BIpe3L86.js";function t(t){return(n,r)=>{let{slot:i}=t??{},a=`slot`+(i?`[name=${i}]`:`:not([name])`);return e(n,r,{get(){return(this.renderRoot?.querySelector(a))?.assignedNodes(t)??[]}})}}export{t};
