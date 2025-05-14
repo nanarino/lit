@@ -1,0 +1,637 @@
+<!DOCTYPE html><html lang="zh-HK" data-astro-cid-mhhjvrox><head><meta charset="UTF-8"><title>下拉氣泡</title><meta name="generator" content="Astro v7.3.8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/lit/clover.svg"><link rel="stylesheet" href="/lit/_astro/custom.CJ7KpjV_.css" data-nanarino-lit-provide><style>
+            *:not(:defined) {
+                display: none;
+            }
+        </style><script>
+            if (localStorage.getItem("theme") === null)
+                localStorage.setItem("theme", "dark")
+        </script><script fetchpriority="high" src="data:text/javascript;base64,InVzZSBzdHJpY3QiO3ZhciBlO2U9WyJkYXJrIiwibGlnaHQiXSx3aW5kb3cuaGFzT3duUHJvcGVydHkoInRoZW1lIil8fE9iamVjdC5kZWZpbmVQcm9wZXJ0eSh3aW5kb3csInRoZW1lIix7Z2V0OigpPT5sb2NhbFN0b3JhZ2UuZ2V0SXRlbSgidGhlbWUiKT8/ZVsrIXdpbmRvdy5tYXRjaE1lZGlhPy4oIihwcmVmZXJzLWNvbG9yLXNjaGVtZTogZGFyaykiKT8ubWF0Y2hlc119KSxkb2N1bWVudC5kb2N1bWVudEVsZW1lbnQuZGF0YXNldC50aGVtZT13aW5kb3cudGhlbWU7Ly8jIHNvdXJjZU1hcHBpbmdVUkw9aW5kZXguanMubWFw"></script><link rel="stylesheet" href="/lit/_astro/ChienChia-F.D0zWekXd.css" data-nanarino-lit-provide onload="document.documentElement.style.setProperty('--font-family-base', 'ChienChia-F')"><link rel="stylesheet" href="/lit/_astro/400.CVkp_1_F.css" data-nanarino-lit-provide onload="document.documentElement.style.setProperty('--font-family-mono', 'JetBrains Mono, ChienChia-F')"><script type="module">document.addEventListener(`astro:after-swap`,()=>{let e=document.documentElement;e.style.setProperty(`--font-family-base`,`ChienChia-F`),e.style.setProperty(`--font-family-mono`,`JetBrains Mono, ChienChia-F`)});</script><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/lit/_astro/ClientRouter.astro_astro_type_script_index_0_lang.BDCjmQ8c.js"></script><script src="/lit/_astro/iconify-icon.min.D2vAPERS.js"></script><script src="/lit/_astro/css-doodle.min.CQKIO8YM.js"></script><script type="module" src="/lit/_astro/app.astro_astro_type_script_index_0_lang.Cy_bFgPd.js"></script><style>[data-astro-cid-55p3voih][slot=dropdown]{gap:4px}[data-astro-cid-55p3voih][dialog-popover=manual]{align-self:end}section[data-astro-cid-55p3voih]{flex-direction:column;align-items:start;padding:2rem;display:flex}hr[data-astro-cid-55p3voih]{width:100%}iconify-icon[data-astro-cid-55p3voih]{width:attr(width px);height:attr(height px)}
+.astro-route-announcer{clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;width:1px;height:1px;position:absolute;top:0;left:0;overflow:hidden}button[data-astro-cid-tqqepe4q]{--glass-size:56px;z-index:9;isolation:isolate;width:var(--glass-size);height:var(--glass-size);box-sizing:border-box;appearance:none;cursor:pointer;user-select:none;color:oklch(var(--black));backdrop-filter:blur(14px)saturate(1.8);box-shadow:0 0 0 1px light-dark(#ffffffb8,#ffffff38) inset, 0 1px 1px #ffffff73 inset, 0 0 2px 1px light-dark(color-mix(in oklch, canvasText, #0000 82%),color-mix(in oklch, canvasText, #0000 88%)) inset, 0 0 10px 4px light-dark(color-mix(in oklch, canvasText, #0000 90%),color-mix(in oklch, canvasText, #0000 94%)) inset, 0 4px 16px #12121614, 0 10px 28px #1212161a;background-color:light-dark(#ffffff57,#ffffff24);background-image:linear-gradient(165deg,#ffffff61,#0000 46%);border:none;border-radius:50%;place-items:center;padding:0;transition:transform .25s,background-color .25s,box-shadow .25s;display:grid;position:fixed;bottom:16px;right:16px;& iconify-icon{z-index:1;grid-area:1/1;font-size:24px;transition:opacity .3s;position:relative}&:hover{background-color:light-dark(#ffffff80,#ffffff38);transform:scale(1.06)}&:active{transform:scale(.96)}&:focus-visible{outline:2px solid oklch(var(--outline-color-any--focus));outline-offset:3px}@media (prefers-reduced-motion:reduce){&,& iconify-icon{transition:none}}}.filter[data-astro-cid-tqqepe4q]{pointer-events:none;width:100%;height:100%;position:absolute;inset:0}:root[data-theme=light] button[data-astro-cid-tqqepe4q]>[data-astro-cid-tqqepe4q][icon]:first-of-type,:root[data-theme=dark] button[data-astro-cid-tqqepe4q]>[data-astro-cid-tqqepe4q][icon]:last-of-type{opacity:0}aside[data-astro-cid-4p4pvbuj]{border-radius:var(--border-radius-lg);margin:2rem;overflow:hidden;& .na-pre-components-spec{border-radius:var(--border-radius-lg);margin:0;padding-right:5em}}section[data-astro-cid-4p4pvbuj]{--border-radius-watermark:var(--border-radius-lg)}.highlighted-word{border:2pt solid oklch(var(--primary-3));border-radius:var(--border-radius-sm)}body:has(.na-pre-components-spec){display:flex;@media screen and (width<=1024px){flex-direction:column}& section{flex:auto}}@property --hue-primary{syntax:"<number>";inherits:true;initial-value:0}footer[data-astro-cid-5lvg3j4a]{line-height:var(--line-height-2);font-size:var(--font-size-2);color:oklch(var(--gray-8));justify-content:center;align-items:center;gap:.5em;display:flex}[data-astro-cid-5lvg3j4a][title=github]{--color-link:var(--lightness-6) var(--chroma-6) var(--hue-primary);--color-link--hover:var(--lightness-4) var(--chroma-4) var(--hue-primary);animation:6s linear infinite hue-primary}@keyframes hue-primary{0%{--hue-primary:0}to{--hue-primary:360}}@media (prefers-reduced-motion:reduce){footer[data-astro-cid-5lvg3j4a] iconify-icon[data-astro-cid-5lvg3j4a]{animation:none}}body{width:100%;min-height:100vh;margin:0;padding:0;overflow-x:hidden;@supports (min-height:100dvh){&{min-height:100dvh}}}
+</style></head><body data-astro-cid-mhhjvrox><button id="theme-toggle" type="button" title="theme toggle" aria-label="theme toggle" style="--glass-size: 56px" data-astro-cid-tqqepe4q><iconify-icon icon="line-md:moon-simple" data-astro-cid-tqqepe4q="true"></iconify-icon><iconify-icon icon="line-md:sunny" data-astro-cid-tqqepe4q="true"></iconify-icon><svg class="filter" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" data-astro-cid-tqqepe4q><defs data-astro-cid-tqqepe4q><filter id="theme-toggle-glass" color-interpolation-filters="sRGB" data-astro-cid-tqqepe4q><feImage href="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2056%2056%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Cdefs%3E%0A%3ClinearGradient%20id%3D%22red%22%20x1%3D%22100%25%22%20y1%3D%220%25%22%20x2%3D%220%25%22%20y2%3D%220%25%22%3E%0A%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%230000%22%2F%3E%0A%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22red%22%2F%3E%0A%3C%2FlinearGradient%3E%0A%3ClinearGradient%20id%3D%22blue%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%220%25%22%20y2%3D%22100%25%22%3E%0A%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%230000%22%2F%3E%0A%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22blue%22%2F%3E%0A%3C%2FlinearGradient%3E%0A%3C%2Fdefs%3E%0A%3Crect%20width%3D%2256%22%20height%3D%2256%22%20fill%3D%22black%22%2F%3E%0A%3Crect%20width%3D%2256%22%20height%3D%2256%22%20rx%3D%2228%22%20fill%3D%22url(%23red)%22%2F%3E%0A%3Crect%20width%3D%2256%22%20height%3D%2256%22%20rx%3D%2228%22%20fill%3D%22url(%23blue)%22%20style%3D%22mix-blend-mode%3Adifference%22%2F%3E%0A%3Crect%20x%3D%226.16%22%20y%3D%226.16%22%20width%3D%2243.68%22%20height%3D%2243.68%22%20rx%3D%2228%22%20fill%3D%22hsl(0%200%25%2050%25%20%2F%200.93)%22%20style%3D%22filter%3Ablur(3.5px)%22%2F%3E%0A%3C%2Fsvg%3E" x="0" y="0" width="100%" height="100%" result="map" data-astro-cid-tqqepe4q></feImage><feDisplacementMap in="SourceGraphic" in2="map" xChannelSelector="R" yChannelSelector="B" scale="-72" result="dispRed" data-astro-cid-tqqepe4q></feDisplacementMap><feColorMatrix in="dispRed" type="matrix" values="1 0 0 0 0
+                            0 0 0 0 0
+                            0 0 0 0 0
+                            0 0 0 1 0" result="red" data-astro-cid-tqqepe4q></feColorMatrix><feDisplacementMap in="SourceGraphic" in2="map" xChannelSelector="R" yChannelSelector="B" scale="-66" result="dispGreen" data-astro-cid-tqqepe4q></feDisplacementMap><feColorMatrix in="dispGreen" type="matrix" values="0 0 0 0 0
+                            0 1 0 0 0
+                            0 0 0 0 0
+                            0 0 0 1 0" result="green" data-astro-cid-tqqepe4q></feColorMatrix><feDisplacementMap in="SourceGraphic" in2="map" xChannelSelector="R" yChannelSelector="B" scale="-60" result="dispBlue" data-astro-cid-tqqepe4q></feDisplacementMap><feColorMatrix in="dispBlue" type="matrix" values="0 0 0 0 0
+                            0 0 0 0 0
+                            0 0 1 0 0
+                            0 0 0 1 0" result="blue" data-astro-cid-tqqepe4q></feColorMatrix><feBlend in="red" in2="green" mode="screen" result="rg" data-astro-cid-tqqepe4q></feBlend><feBlend in="rg" in2="blue" mode="screen" result="output" data-astro-cid-tqqepe4q></feBlend><feGaussianBlur stdDeviation="0.45" data-astro-cid-tqqepe4q></feGaussianBlur></filter></defs></svg></button><script type="module">var e=[`dark`,`light`];function t(t){return e.includes(t)}function n(e){return t((e??{})?.detail)}var r=e;function i(e,i=document.documentElement){t(e)||(e=n(e)?e.detail:r.at(r.indexOf(window.theme)-1)),i.dataset.theme=e,localStorage.setItem(`theme`,e)}var a={size:56,border:.22,lightness:50,blend:`difference`,alpha:.93,blur:3.5,scale:-72,rOffset:0,gOffset:6,bOffset:12,displace:.45},o=(e,t)=>{let n=Math.min(e,t)*(a.border*.5),r=Math.min(e,t)/2;return`<svg viewBox="0 0 ${e} ${t}" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="red" x1="100%" y1="0%" x2="0%" y2="0%">
+<stop offset="0%" stop-color="#0000"/>
+<stop offset="100%" stop-color="red"/>
+</linearGradient>
+<linearGradient id="blue" x1="0%" y1="0%" x2="0%" y2="100%">
+<stop offset="0%" stop-color="#0000"/>
+<stop offset="100%" stop-color="blue"/>
+</linearGradient>
+</defs>
+<rect width="${e}" height="${t}" fill="black"/>
+<rect width="${e}" height="${t}" rx="${r}" fill="url(#red)"/>
+<rect width="${e}" height="${t}" rx="${r}" fill="url(#blue)" style="mix-blend-mode:${a.blend}"/>
+<rect x="${n}" y="${n}" width="${e-n*2}" height="${t-n*2}" rx="${r}" fill="hsl(0 0% ${a.lightness}% / ${a.alpha})" style="filter:blur(${a.blur}px)"/>
+</svg>`},s=(e,t)=>`data:image/svg+xml,${encodeURIComponent(o(e,t))}`,c,l=e=>{let t=e.offsetWidth,n=e.offsetHeight,r=e.querySelector(`feImage`);t&&n&&r&&r.setAttribute(`href`,s(t,n))};document.addEventListener(`astro:page-load`,()=>{let e=document.getElementById(`theme-toggle`);e&&(e.onclick=()=>{i(),document.getElementById(`tabs`)?.iframes.forEach(({contentDocument:e})=>e&&i(window.theme,e.documentElement))},(CSS.supports(`backdrop-filter`,`url('#theme-toggle-glass')`)||CSS.supports(`-webkit-backdrop-filter`,`url('#theme-toggle-glass')`))&&(e.style.backdropFilter=`url(#theme-toggle-glass)`,e.style.setProperty(`-webkit-backdrop-filter`,`url(#theme-toggle-glass)`)),c?.disconnect(),c=new ResizeObserver(()=>l(e)),c.observe(e),l(e))});</script><script type="module" src="/lit/_astro/na-dropdown.astro_astro_type_script_index_0_lang.BXKLrZke.js"></script><section data-astro-cid-55p3voih><!-- `closetarget="[type=submit]"` 自訂點擊内部時自動關閉條件 --><!-- `closesoon="true"` 點擊内部時 立即關閉（該處係 astro 的 [attr] 渲染為 [attr="true"]🫡）--><na-dropdown closetarget="[type=submit]" closesoon="true" data-astro-cid-55p3voih="true"><button class="na-button" data-astro-cid-55p3voih> 連絡先 </button><button class="na-button" slot="dropdown" type="submit" data-astro-cid-55p3voih><iconify-icon icon="line-md:email" width="16" height="16" data-astro-cid-55p3voih="true"></iconify-icon><span data-astro-cid-55p3voih> email </span></button><button class="na-button" slot="dropdown" data-primary data-astro-cid-55p3voih><iconify-icon icon="line-md:twitter" width="16" height="16" data-astro-cid-55p3voih="true"></iconify-icon><span data-astro-cid-55p3voih> twitter </span></button><button class="na-button" slot="dropdown" data-primary data-astro-cid-55p3voih><iconify-icon icon="line-md:instagram" width="16" height="16" data-astro-cid-55p3voih="true"></iconify-icon><span data-astro-cid-55p3voih> instagram </span></button></na-dropdown><hr class="na-divider" data-astro-cid-55p3voih><!-- `dialog-popover="manual"` 會禁用自動關閉 --><!-- `dialog-style="inset:unset;"` 自訂定位和偏移樣式 --><na-dropdown dialog-popover="manual" dialog-style="left: unset; transform: unset; right: anchor(right);" data-astro-cid-55p3voih="true"><button class="na-button" style="--color-button: var(--red-6);" data-astro-cid-55p3voih><iconify-icon icon="line-md:youtube-filled" width="24" height="24" data-astro-cid-55p3voih="true"></iconify-icon></button><button class="na-button" slot="dropdown" data-astro-cid-55p3voih><iconify-icon icon="line-md:thumbs-up" width="16" height="16" data-astro-cid-55p3voih="true"></iconify-icon><span data-astro-cid-55p3voih> I Like </span></button><button class="na-button" slot="dropdown" data-astro-cid-55p3voih><iconify-icon icon="line-md:star" width="16" height="16" data-astro-cid-55p3voih="true"></iconify-icon><span data-astro-cid-55p3voih> Add Star </span></button><button class="na-button" slot="dropdown" data-astro-cid-55p3voih><iconify-icon icon="line-md:download-outline" width="16" height="16" data-astro-cid-55p3voih="true"></iconify-icon><span data-astro-cid-55p3voih> Download </span></button></na-dropdown></section><script type="module">async function e(){let e=document.querySelectorAll(`:not(:defined)`),t=new Set([...e].map(e=>e.localName));await Promise.all([...t].map(e=>customElements.whenDefined(e)));for(let e of document.querySelectorAll(`na-dropdown`))if(!e.dialog)continue}document.addEventListener(`astro:after-swap`,t=>{t.target&&t.target.location.pathname.replace(RegExp(`^/lit/`),``).replace(/\/$/,``)===`na-dropdown`&&e()}),e();</script><aside data-astro-cid-4p4pvbuj><section class="na-watermark" data-astro-cid-4p4pvbuj><pre class="na-pre na-pre-components-spec" tabindex="0" data-astro-cid-4p4pvbuj data-language="astro"><code class="na-code"><span class="line"></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">    &#x3C;</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">script</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">        import</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;"> {</span></span>
+<span class="line"><span style="--color-code: from #90A4AE l c h;
+--color-code-dark: from #EEFFFF l c h;">            getChromeVersion</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">,</span></span>
+<span class="line"><span style="--color-code: from #90A4AE l c h;
+--color-code-dark: from #EEFFFF l c h;">            getSafariVersion</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">,</span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">        }</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;"> from</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;"> "</span><span style="--color-code: from #91B859 l c h;
+--color-code-dark: from #C3E88D l c h;">@/scripts/client/browser</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">        if</span><span style="--color-code: from #90A4AE l c h;
+--color-code-dark: from #EEFFFF l c h;"> (</span><span style="--color-code: from #6182B8 l c h;
+--color-code-dark: from #82AAFF l c h;">getChromeVersion</span><span style="--color-code: from #90A4AE l c h;
+--color-code-dark: from #EEFFFF l c h;">() </span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">>=</span><span style="--color-code: from #F76D47 l c h;
+--color-code-dark: from #F78C6C l c h;"> 125</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;"> ||</span><span style="--color-code: from #6182B8 l c h;
+--color-code-dark: from #82AAFF l c h;"> getSafariVersion</span><span style="--color-code: from #90A4AE l c h;
+--color-code-dark: from #EEFFFF l c h;">() </span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">>=</span><span style="--color-code: from #F76D47 l c h;
+--color-code-dark: from #F78C6C l c h;"> 26</span><span style="--color-code: from #90A4AE l c h;
+--color-code-dark: from #EEFFFF l c h;">) </span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">{</span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">            import</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">(</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #91B859 l c h;
+--color-code-dark: from #C3E88D l c h;">@/lib/Dropdown/next</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">)</span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">        }</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;"> else</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;"> {</span></span>
+<span class="line"><span style="--color-code: from #90A4AE l c h;
+--color-code-dark: from #545454 l c h;">            // 相容實現，點擊元件外部無法關閉， WIN 7 可用</span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">            import</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">(</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #91B859 l c h;
+--color-code-dark: from #C3E88D l c h;">@/lib/Dropdown</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">)</span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">        }</span></span>
+<span class="line"><span style="--color-code: from #90A4AE l c h;
+--color-code-dark: from #545454 l c h;">        // 簡易實現，可配置項少</span></span>
+<span class="line"><span style="--color-code: from #90A4AE l c h;
+--color-code-dark: from #545454 l c h;">        // import "@/lib/Dropdown/simple"</span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">    &#x3C;/</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">script</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">    &#x3C;</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">section</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span></span>
+<span class="line"><span style="--color-code: from #90A4AE l c h;
+--color-code-dark: from #545454 l c h;">        &#x3C;!-- `closetarget="[type=submit]"` 自訂點擊内部時自動關閉條件 --></span></span>
+<span class="line"><span style="--color-code: from #90A4AE l c h;
+--color-code-dark: from #545454 l c h;">        &#x3C;!-- `closesoon="true"` 點擊内部時 立即關閉（該處係 astro 的 [attr] 渲染為 [attr="true"]🫡）--></span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">        &#x3C;</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">na-dropdown</span><span style="--color-code: from #9C3EDA l c h;
+--color-code-dark: from #C792EA l c h;"> closetarget</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">=</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #91B859 l c h;
+--color-code-dark: from #C3E88D l c h;">[type=submit]</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #9C3EDA l c h;
+--color-code-dark: from #C792EA l c h;"> closesoon</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">            &#x3C;</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">button</span><span style="--color-code: from #9C3EDA l c h;
+--color-code-dark: from #C792EA l c h;"> class</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">=</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #91B859 l c h;
+--color-code-dark: from #C3E88D l c h;">na-button</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span><span style="--color-code: from #90A4AE l c h;
+--color-code-dark: from #EEFFFF l c h;"> 連絡先 </span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">&#x3C;/</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">button</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">            &#x3C;</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">button</span><span style="--color-code: from #9C3EDA l c h;
+--color-code-dark: from #C792EA l c h;"> class</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">=</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #91B859 l c h;
+--color-code-dark: from #C3E88D l c h;">na-button</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #9C3EDA l c h;
+--color-code-dark: from #C792EA l c h;"> slot</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">=</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #91B859 l c h;
+--color-code-dark: from #C3E88D l c h;">dropdown</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #9C3EDA l c h;
+--color-code-dark: from #C792EA l c h;"> type</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">=</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #91B859 l c h;
+--color-code-dark: from #C3E88D l c h;">submit</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">                &#x3C;</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">iconify-icon</span><span style="--color-code: from #9C3EDA l c h;
+--color-code-dark: from #C792EA l c h;"> icon</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">=</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #91B859 l c h;
+--color-code-dark: from #C3E88D l c h;">line-md:email</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #9C3EDA l c h;
+--color-code-dark: from #C792EA l c h;"> width</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">=</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #91B859 l c h;
+--color-code-dark: from #C3E88D l c h;">16</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #9C3EDA l c h;
+--color-code-dark: from #C792EA l c h;"> height</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">=</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #91B859 l c h;
+--color-code-dark: from #C3E88D l c h;">16</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">                &#x3C;/</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">iconify-icon</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">                &#x3C;</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">span</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span><span style="--color-code: from #90A4AE l c h;
+--color-code-dark: from #EEFFFF l c h;"> email </span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">&#x3C;/</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">span</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">            &#x3C;/</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">button</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">            &#x3C;</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">button</span><span style="--color-code: from #9C3EDA l c h;
+--color-code-dark: from #C792EA l c h;"> class</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">=</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #91B859 l c h;
+--color-code-dark: from #C3E88D l c h;">na-button</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #9C3EDA l c h;
+--color-code-dark: from #C792EA l c h;"> slot</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">=</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #91B859 l c h;
+--color-code-dark: from #C3E88D l c h;">dropdown</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #9C3EDA l c h;
+--color-code-dark: from #C792EA l c h;"> data-primary</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">                &#x3C;</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">iconify-icon</span><span style="--color-code: from #9C3EDA l c h;
+--color-code-dark: from #C792EA l c h;"> icon</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">=</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #91B859 l c h;
+--color-code-dark: from #C3E88D l c h;">line-md:twitter</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #9C3EDA l c h;
+--color-code-dark: from #C792EA l c h;"> width</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">=</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #91B859 l c h;
+--color-code-dark: from #C3E88D l c h;">16</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #9C3EDA l c h;
+--color-code-dark: from #C792EA l c h;"> height</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">=</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #91B859 l c h;
+--color-code-dark: from #C3E88D l c h;">16</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">                &#x3C;/</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">iconify-icon</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">                &#x3C;</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">span</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span><span style="--color-code: from #90A4AE l c h;
+--color-code-dark: from #EEFFFF l c h;"> twitter </span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">&#x3C;/</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">span</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">            &#x3C;/</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">button</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">            &#x3C;</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">button</span><span style="--color-code: from #9C3EDA l c h;
+--color-code-dark: from #C792EA l c h;"> class</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">=</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #91B859 l c h;
+--color-code-dark: from #C3E88D l c h;">na-button</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #9C3EDA l c h;
+--color-code-dark: from #C792EA l c h;"> slot</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">=</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #91B859 l c h;
+--color-code-dark: from #C3E88D l c h;">dropdown</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #9C3EDA l c h;
+--color-code-dark: from #C792EA l c h;"> data-primary</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">                &#x3C;</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">iconify-icon</span><span style="--color-code: from #9C3EDA l c h;
+--color-code-dark: from #C792EA l c h;"> icon</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">=</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #91B859 l c h;
+--color-code-dark: from #C3E88D l c h;">line-md:instagram</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #9C3EDA l c h;
+--color-code-dark: from #C792EA l c h;"> width</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">=</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #91B859 l c h;
+--color-code-dark: from #C3E88D l c h;">16</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #9C3EDA l c h;
+--color-code-dark: from #C792EA l c h;"> height</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">=</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #91B859 l c h;
+--color-code-dark: from #C3E88D l c h;">16</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">                &#x3C;/</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">iconify-icon</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">                &#x3C;</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">span</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span><span style="--color-code: from #90A4AE l c h;
+--color-code-dark: from #EEFFFF l c h;"> instagram </span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">&#x3C;/</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">span</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">            &#x3C;/</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">button</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">        &#x3C;/</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">na-dropdown</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span></span>
+<span class="line"></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">        &#x3C;</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">hr</span><span style="--color-code: from #9C3EDA l c h;
+--color-code-dark: from #C792EA l c h;"> class</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">=</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #91B859 l c h;
+--color-code-dark: from #C3E88D l c h;">na-divider</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;"> /></span></span>
+<span class="line"></span>
+<span class="line"><span style="--color-code: from #90A4AE l c h;
+--color-code-dark: from #545454 l c h;">        &#x3C;!-- `dialog-popover="manual"` 會禁用自動關閉 --></span></span>
+<span class="line"><span style="--color-code: from #90A4AE l c h;
+--color-code-dark: from #545454 l c h;">        &#x3C;!-- `dialog-style="inset:unset;"` 自訂定位和偏移樣式 --></span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">        &#x3C;</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">na-dropdown</span></span>
+<span class="line"><span style="--color-code: from #9C3EDA l c h;
+--color-code-dark: from #C792EA l c h;">            dialog-popover</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">=</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #91B859 l c h;
+--color-code-dark: from #C3E88D l c h;">manual</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span></span>
+<span class="line"><span style="--color-code: from #9C3EDA l c h;
+--color-code-dark: from #C792EA l c h;">            dialog-style</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">=</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #91B859 l c h;
+--color-code-dark: from #C3E88D l c h;">left: unset; transform: unset; right: anchor(right);</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">        ></span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">            &#x3C;</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">button</span><span style="--color-code: from #9C3EDA l c h;
+--color-code-dark: from #C792EA l c h;"> class</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">=</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #91B859 l c h;
+--color-code-dark: from #C3E88D l c h;">na-button</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #9C3EDA l c h;
+--color-code-dark: from #C792EA l c h;"> style</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">=</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #91B859 l c h;
+--color-code-dark: from #C3E88D l c h;">--color-button: var(--red-6);</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">                &#x3C;</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">iconify-icon</span></span>
+<span class="line"><span style="--color-code: from #9C3EDA l c h;
+--color-code-dark: from #C792EA l c h;">                    icon</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">=</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #91B859 l c h;
+--color-code-dark: from #C3E88D l c h;">line-md:youtube-filled</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span></span>
+<span class="line"><span style="--color-code: from #9C3EDA l c h;
+--color-code-dark: from #C792EA l c h;">                    width</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">=</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #91B859 l c h;
+--color-code-dark: from #C3E88D l c h;">24</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span></span>
+<span class="line"><span style="--color-code: from #9C3EDA l c h;
+--color-code-dark: from #C792EA l c h;">                    height</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">=</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #91B859 l c h;
+--color-code-dark: from #C3E88D l c h;">24</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">                ></span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">                &#x3C;/</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">iconify-icon</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">            &#x3C;/</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">button</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">            &#x3C;</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">button</span><span style="--color-code: from #9C3EDA l c h;
+--color-code-dark: from #C792EA l c h;"> class</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">=</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #91B859 l c h;
+--color-code-dark: from #C3E88D l c h;">na-button</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #9C3EDA l c h;
+--color-code-dark: from #C792EA l c h;"> slot</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">=</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #91B859 l c h;
+--color-code-dark: from #C3E88D l c h;">dropdown</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">                &#x3C;</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">iconify-icon</span><span style="--color-code: from #9C3EDA l c h;
+--color-code-dark: from #C792EA l c h;"> icon</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">=</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #91B859 l c h;
+--color-code-dark: from #C3E88D l c h;">line-md:thumbs-up</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #9C3EDA l c h;
+--color-code-dark: from #C792EA l c h;"> width</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">=</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #91B859 l c h;
+--color-code-dark: from #C3E88D l c h;">16</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #9C3EDA l c h;
+--color-code-dark: from #C792EA l c h;"> height</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">=</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #91B859 l c h;
+--color-code-dark: from #C3E88D l c h;">16</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">                &#x3C;/</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">iconify-icon</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">                &#x3C;</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">span</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span><span style="--color-code: from #90A4AE l c h;
+--color-code-dark: from #EEFFFF l c h;"> I Like </span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">&#x3C;/</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">span</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">            &#x3C;/</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">button</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">            &#x3C;</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">button</span><span style="--color-code: from #9C3EDA l c h;
+--color-code-dark: from #C792EA l c h;"> class</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">=</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #91B859 l c h;
+--color-code-dark: from #C3E88D l c h;">na-button</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #9C3EDA l c h;
+--color-code-dark: from #C792EA l c h;"> slot</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">=</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #91B859 l c h;
+--color-code-dark: from #C3E88D l c h;">dropdown</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">                &#x3C;</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">iconify-icon</span><span style="--color-code: from #9C3EDA l c h;
+--color-code-dark: from #C792EA l c h;"> icon</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">=</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #91B859 l c h;
+--color-code-dark: from #C3E88D l c h;">line-md:star</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #9C3EDA l c h;
+--color-code-dark: from #C792EA l c h;"> width</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">=</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #91B859 l c h;
+--color-code-dark: from #C3E88D l c h;">16</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #9C3EDA l c h;
+--color-code-dark: from #C792EA l c h;"> height</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">=</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #91B859 l c h;
+--color-code-dark: from #C3E88D l c h;">16</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">                &#x3C;/</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">iconify-icon</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">                &#x3C;</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">span</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span><span style="--color-code: from #90A4AE l c h;
+--color-code-dark: from #EEFFFF l c h;"> Add Star </span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">&#x3C;/</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">span</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">            &#x3C;/</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">button</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">            &#x3C;</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">button</span><span style="--color-code: from #9C3EDA l c h;
+--color-code-dark: from #C792EA l c h;"> class</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">=</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #91B859 l c h;
+--color-code-dark: from #C3E88D l c h;">na-button</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #9C3EDA l c h;
+--color-code-dark: from #C792EA l c h;"> slot</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">=</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #91B859 l c h;
+--color-code-dark: from #C3E88D l c h;">dropdown</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">                &#x3C;</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">iconify-icon</span></span>
+<span class="line"><span style="--color-code: from #9C3EDA l c h;
+--color-code-dark: from #C792EA l c h;">                    icon</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">=</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #91B859 l c h;
+--color-code-dark: from #C3E88D l c h;">line-md:download-outline</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span></span>
+<span class="line"><span style="--color-code: from #9C3EDA l c h;
+--color-code-dark: from #C792EA l c h;">                    width</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">=</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #91B859 l c h;
+--color-code-dark: from #C3E88D l c h;">16</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span></span>
+<span class="line"><span style="--color-code: from #9C3EDA l c h;
+--color-code-dark: from #C792EA l c h;">                    height</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">=</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #91B859 l c h;
+--color-code-dark: from #C3E88D l c h;">16</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">                ></span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">                &#x3C;/</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">iconify-icon</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">                &#x3C;</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">span</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span><span style="--color-code: from #90A4AE l c h;
+--color-code-dark: from #EEFFFF l c h;"> Download </span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">&#x3C;/</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">span</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">            &#x3C;/</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">button</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">        &#x3C;/</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">na-dropdown</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">    &#x3C;/</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">section</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">    &#x3C;</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">script</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span></span>
+<span class="line"><span style="--color-code: from #9C3EDA l c h;
+--color-code-dark: from #C792EA l c h;">        async</span><span style="--color-code: from #9C3EDA l c h;
+--color-code-dark: from #C792EA l c h;"> function</span><span style="--color-code: from #6182B8 l c h;
+--color-code-dark: from #82AAFF l c h;"> onload</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">()</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;"> {</span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">            for</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;"> (</span><span style="--color-code: from #9C3EDA l c h;
+--color-code-dark: from #C792EA l c h;">const</span><span style="--color-code: from #90A4AE l c h;
+--color-code-dark: from #EEFFFF l c h;"> element</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;"> of</span><span style="--color-code: from #90A4AE l c h;
+--color-code-dark: from #EEFFFF l c h;"> document</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">.</span><span style="--color-code: from #6182B8 l c h;
+--color-code-dark: from #82AAFF l c h;">querySelectorAll</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">(</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #91B859 l c h;
+--color-code-dark: from #C3E88D l c h;">na-dropdown</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">)) </span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">{</span></span>
+<span class="line"><span style="--color-code: from #90A4AE l c h;
+--color-code-dark: from #545454 l c h;">                // 程式控制氣泡框</span></span>
+<span class="line"><span style="--color-code: from #90A4AE l c h;
+--color-code-dark: from #545454 l c h;">                // element.toggle()</span></span>
+<span class="line"></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">                if</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;"> (</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">!</span><span style="--color-code: from #90A4AE l c h;
+--color-code-dark: from #EEFFFF l c h;">element</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">.</span><span style="--color-code: from #90A4AE l c h;
+--color-code-dark: from #EEFFFF l c h;">dialog</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">) </span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">continue</span></span>
+<span class="line"></span>
+<span class="line"><span style="--color-code: from #90A4AE l c h;
+--color-code-dark: from #545454 l c h;">                // 程式控制氣泡框（index）：</span></span>
+<span class="line"><span style="--color-code: from #90A4AE l c h;
+--color-code-dark: from #545454 l c h;">                // element.dialog.open = true</span></span>
+<span class="line"><span style="--color-code: from #90A4AE l c h;
+--color-code-dark: from #545454 l c h;">                // element.dialog.open = false</span><span style="--color-code: from #90A4AE l c h;
+--color-code-dark: from #545454 l c h;"> // 不要用這個 有監聽 @close 副作用</span></span>
+<span class="line"><span style="--color-code: from #90A4AE l c h;
+--color-code-dark: from #545454 l c h;">                // element.dialog.show()</span></span>
+<span class="line"><span style="--color-code: from #90A4AE l c h;
+--color-code-dark: from #545454 l c h;">                // element.dialog.close()</span></span>
+<span class="line"></span>
+<span class="line"><span style="--color-code: from #90A4AE l c h;
+--color-code-dark: from #545454 l c h;">                // 程式控制氣泡框（next/simple）：</span></span>
+<span class="line"><span style="--color-code: from #90A4AE l c h;
+--color-code-dark: from #545454 l c h;">                // dialog.togglePopover()</span></span>
+<span class="line"><span style="--color-code: from #90A4AE l c h;
+--color-code-dark: from #545454 l c h;">                // dialog.showPopover()</span></span>
+<span class="line"><span style="--color-code: from #90A4AE l c h;
+--color-code-dark: from #545454 l c h;">                // dialog.hidePopover()</span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">            }</span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">        }</span></span>
+<span class="line"></span>
+<span class="line"><span style="--color-code: from #6182B8 l c h;
+--color-code-dark: from #82AAFF l c h;">        onload</span><span style="--color-code: from #90A4AE l c h;
+--color-code-dark: from #EEFFFF l c h;">()</span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">    &#x3C;/</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">script</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">    &#x3C;</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">style</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">        [</span><span style="--color-code: from #9C3EDA l c h;
+--color-code-dark: from #C792EA l c h;">slot</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">=</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #91B859 l c h;
+--color-code-dark: from #C3E88D l c h;">dropdown</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">]</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;"> {</span></span>
+<span class="line"><span style="--color-code: from #8796B0 l c h;
+--color-code-dark: from #B2CCD6 l c h;">            gap</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">:</span><span style="--color-code: from #F76D47 l c h;
+--color-code-dark: from #F78C6C l c h;"> 4px</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">;</span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">        }</span></span>
+<span class="line"></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">        [</span><span style="--color-code: from #9C3EDA l c h;
+--color-code-dark: from #C792EA l c h;">dialog-popover</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">=</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #91B859 l c h;
+--color-code-dark: from #C3E88D l c h;">manual</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">"</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">]</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;"> {</span></span>
+<span class="line"><span style="--color-code: from #8796B0 l c h;
+--color-code-dark: from #B2CCD6 l c h;">            align-self</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">:</span><span style="--color-code: from #90A4AE l c h;
+--color-code-dark: from #EEFFFF l c h;"> end</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">;</span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">        }</span></span>
+<span class="line"><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">    &#x3C;/</span><span style="--color-code: from #E53935 l c h;
+--color-code-dark: from #F07178 l c h;">style</span><span style="--color-code: from #39ADB5 l c h;
+--color-code-dark: from #89DDFF l c h;">></span></span>
+<span class="line"><span style="--color-code: from #90A4AE l c h;
+--color-code-dark: from #EEFFFF l c h;">	</span></span></code></pre></section></aside></body></html>

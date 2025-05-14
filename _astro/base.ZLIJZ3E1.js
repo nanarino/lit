@@ -1,0 +1,1 @@
+import{t as e}from"./lit.DvjAYmxF.js";var t=class extends e{static{this.adoptedStyle=new CSSStyleSheet}static get styles(){let e=this._styles||[];return[this.adoptedStyle,...Array.isArray(e)?e:[e]]}static set styles(e){this._styles=e}};export{t};
