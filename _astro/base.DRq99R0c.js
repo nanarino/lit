@@ -1,0 +1,1 @@
+import{a as s}from"./lit-element.Befuxl2y.js";class i extends s{static{this.adoptedStyle=new CSSStyleSheet}static get styles(){const t=this._styles||[];return[this.adoptedStyle,...Array.isArray(t)?t:[t]]}static set styles(t){this._styles=t}}export{i as N};
