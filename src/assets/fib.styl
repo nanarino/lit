@@ -1,7 +1,7 @@
 @grid: 1 / 100vw 100vh / transparent;
 @content: @svg(
-    viewBox: -600 -600 1200 1200;
-    circle * 3600 {
+    viewBox: -300 -300 600 600;
+    circle * 1800 {
         fill: @pick(
             rgb(var(--green-3)),
             rgb(var(--green-4)),
@@ -18,10 +18,10 @@
 );
 & svg {
     transform: scale(.1) rotate(0);
-    animation: exp 120s forwards;
+    animation: exp 12s forwards;
 }
 @keyframes exp {
     to {
-        transform: scale(9) rotate(7200deg);
+        transform: scale(3) rotate(720deg);
     }
 }
