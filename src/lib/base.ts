@@ -2,28 +2,25 @@ import {
     LitElement,
     type CSSResultGroup,
     // unsafeCSS,
-    type PropertyValues,
 } from "lit"
-// import nanarinoStylus from "nanarinostyl?raw"
+// import injectedCSS from "nanarinostyl?raw"
 
-export abstract class hasLoadedShowLitComponent extends LitElement {
-    protected updated(_changed: PropertyValues) {
-        this.dataset.loaded = ""
-    }
-}
 
-export abstract class NanarinoStylusLitComponent extends hasLoadedShowLitComponent {
+/**
+ * 給元素注入全局樣式的方法
+ */
+export abstract class NanarinoLitComponent extends LitElement {
     // Small hack to include global styles
 
     private static _styles: CSSResultGroup
-    static nanarinoStylus: CSSStyleSheet = new CSSStyleSheet() // unsafeCSS(nanarinoStylus)
+    static injectedCSS: CSSStyleSheet = new CSSStyleSheet() // unsafeCSS(injectedCSS)
 
     static get styles(): CSSResultGroup {
-        const derivedStyles = this._styles || []
+        const derivedCSS = this._styles || []
 
         return [
-            this.nanarinoStylus,
-            ...(Array.isArray(derivedStyles) ? derivedStyles : [derivedStyles]),
+            this.injectedCSS,
+            ...(Array.isArray(derivedCSS) ? derivedCSS : [derivedCSS]),
         ]
     }
 

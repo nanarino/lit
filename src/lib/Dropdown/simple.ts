@@ -1,4 +1,4 @@
-import { NanarinoStylusLitComponent } from "@/lib/base"
+import { NanarinoLitComponent } from "@/lib/base"
 import { html, css } from "lit"
 import { customElement, queryAssignedNodes, property } from "lit/decorators.js"
 import type { DropdownProps } from "./interface"
@@ -6,7 +6,7 @@ export type { DropdownProps } from "./interface"
 
 @customElement("na-dropdown")
 export class Dropdown
-    extends NanarinoStylusLitComponent
+    extends NanarinoLitComponent
     implements DropdownProps
 {
     @property({ attribute: "dialog-popover", type: String }) dialogPopover:

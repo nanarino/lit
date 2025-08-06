@@ -9,7 +9,7 @@
 
 ```bash
 pnpm i
-pnpm vite
+pnpm dev
 ```
 
 本地開發環境下在 `127.0.0.1` 中會額外引入字體作爲測試
@@ -45,19 +45,21 @@ pnpm build
 </html>
 ```
 
-注冊元件 并為影子 DOM 注入樣式
+### 注冊元件 并注入樣式
+
+為了減小包體積，樣式是額外注入的
 
 ```ts
 // src/index.ts
 
-import { NanarinoStylusLitComponent } from "@/assets/na-lit.js"
+import { NanarinoLitComponent } from "@/assets/na-lit.js"
 
 // 影子DOM内部樣式復用外部的全局樣式 需要保證是[0]
 const nanarinostyl = document.styleSheets[0]
 for (const css of Array.from(nanarinostyl?.cssRules ?? []).reverse()) {
     // 點解要用try 見 https://github.com/nanarino/na-lit/issues/1
     try {
-        NanarinoStylusLitComponent.nanarinoStylus.insertRule(css.cssText)
+        NanarinoLitComponent.injectedCSS.insertRule(css.cssText)
     } catch (error) {
         console.warn(error)
     }
@@ -70,4 +72,14 @@ for (const css of Array.from(nanarinostyl?.cssRules ?? []).reverse()) {
 <section>
     <na-pagination total="36"></na-pagination>
 </section>
+```
+
+### 避免[FOUC](https://en.wikipedia.org/wiki/Flash_of_unstyled_content)
+
+不只本套件，這對於所有元件適用
+
+```css
+na-svg-icon:not(:defined) {
+    opacity: 0;
+}
 ```

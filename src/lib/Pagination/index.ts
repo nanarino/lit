@@ -1,4 +1,4 @@
-import { NanarinoStylusLitComponent } from "@/lib/base"
+import { NanarinoLitComponent } from "@/lib/base"
 import { type PropertyValues, html, css } from "lit"
 import { customElement, property, state } from "lit/decorators.js"
 import { map } from "lit/directives/map.js"
@@ -26,7 +26,7 @@ export interface PageButton {
 
 @customElement("na-pagination")
 export class Pagination
-    extends NanarinoStylusLitComponent
+    extends NanarinoLitComponent
     implements PaginationProps
 {
     @property({ type: Number }) index: number = NaN

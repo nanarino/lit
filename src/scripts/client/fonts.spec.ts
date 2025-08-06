@@ -1,4 +1,4 @@
-import { NanarinoStylusLitComponent } from "@/lib/base"
+import { NanarinoLitComponent } from "@/lib/base"
 
 /**
  * 測試非默認字體的效果
@@ -19,7 +19,7 @@ function test_set_fonts() {
                     (Reflect.get(this, "sheet")?.cssRules ?? []) as CSSRuleList
                 ).reverse()) {
                     try {
-                        NanarinoStylusLitComponent.nanarinoStylus.insertRule(
+                        NanarinoLitComponent.injectedCSS.insertRule(
                             css.cssText
                         )
                     } catch (error) {

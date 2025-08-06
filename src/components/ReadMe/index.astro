@@ -3,6 +3,8 @@ import Code from "../Code/index.astro"
 import dedent from "dedent"
 ---
 
+<h3 class="na-title">套件獲取</h3>
+
 <p class="na-paragraph">
     先要自订構建出 <code class="na-code na-code-no-bg">nanarinostyl</code> (
     <code class="na-code">nanarinostyl/dist/style.min.css</code>
@@ -28,22 +30,22 @@ import dedent from "dedent"
     `}
 />
 
-<p class="na-paragraph">
-    注冊元件 并為影子 <code class="na-code na-code-no-bg">DOM</code> 注入樣式
-</p>
+<h4 class="na-title">注冊元件 并注入樣式</h4>
+
+<p class="na-paragraph">為了減小包體積，樣式是額外注入的</p>
 
 <Code
     code={dedent`
         // src/scripts/client/init
 
-        import { NanarinoStylusLitComponent } from "@/assets/na-lit.js"
+        import { NanarinoLitComponent } from "@/assets/na-lit.js"
 
         // 影子DOM内部樣式復用外部的全局樣式 需要保證是[0]
         const nanarinostyl = document.styleSheets[0]
         for (const css of Array.from(nanarinostyl?.cssRules ?? []).reverse()) {
             // 點解要用try 見 https://github.com/nanarino/na-lit/issues/1
             try {
-                NanarinoStylusLitComponent.nanarinoStylus.insertRule(css.cssText)
+                NanarinoLitComponent.injectedCSS.insertRule(css.cssText)
             } catch (error) {
                 console.warn(error)
             }
@@ -60,6 +62,28 @@ import dedent from "dedent"
             <na-pagination total="36"></na-pagination>
         </section>
     `}
+/>
+
+<h4 class="na-title">
+    避免
+    <a
+        class="na-link"
+        href="https://en.wikipedia.org/wiki/Flash_of_unstyled_content"
+        target="_blank"
+    >
+        FOUC
+    </a>
+</h4>
+
+<p class="na-paragraph">不只本套件，這對於所有元件適用</p>
+
+<Code
+    code={dedent`
+        na-svg-icon:not(:defined) {
+            opacity: 0;
+        }
+    `}
+    lang="css"
 />
 
 <style>

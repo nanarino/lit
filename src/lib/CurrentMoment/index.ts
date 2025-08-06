@@ -1,4 +1,4 @@
-import { NanarinoStylusLitComponent } from "@/lib/base"
+import { NanarinoLitComponent } from "@/lib/base"
 import { html, css } from "lit"
 import { customElement, property } from "lit/decorators.js"
 
@@ -9,7 +9,7 @@ export interface CurrentMomentProps
 
 @customElement("na-current-moment")
 export class CurrentMoment
-    extends NanarinoStylusLitComponent
+    extends NanarinoLitComponent
     implements CurrentMomentProps
 {
     date: string = ""
