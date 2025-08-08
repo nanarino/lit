@@ -1,0 +1,88 @@
+---
+import App from "@/layouts/app.astro"
+---
+
+<App title="多頁簽">
+    <script>
+        import "@/lib/MultiTabs"
+    </script>
+    <section>
+        <!-- 這是僅僅適用於顯示IFAME的頁簽集合 -->
+        <na-multi-tabs id="tabs" active="jigsaw"></na-multi-tabs>
+    </section>
+    <script>
+        import type { MultiTabIframeAttrs } from "@/lib/MultiTabs"
+
+        const base = import.meta.env.BASE_URL
+
+        async function onload() {
+            // code-ignore-start
+            const loadingElements = document.querySelectorAll(":not(:defined)")
+            const tags = new Set([...loadingElements].map(ele => ele.localName))
+            await Promise.all(
+                [...tags].map(tag => customElements.whenDefined(tag))
+            )
+            // code-ignore-end
+            const tabs = document.querySelector("na-multi-tabs")
+            tabs!.iframes = [
+                {
+                    key: "jigsaw",
+                    src: "https://nanarino.github.io/jigsaw/?img=0",
+                    title: "拼圖1",
+                    closeabled: true,
+                },
+                {
+                    key: "jigsaw1",
+                    src: "https://nanarino.github.io/jigsaw/?img=1",
+                    title: "拼圖2",
+                    closeabled: true,
+                },
+                {
+                    key: "jigsaw2",
+                    src: "https://nanarino.github.io/jigsaw/?img=2",
+                    title: "拼圖3",
+                    closeabled: true,
+                },
+                {
+                    key: "python",
+                    src: base + "games/python",
+                    title: "貪吃蛇",
+                    closeabled: true,
+                },
+            ]
+            // 由于 `tabs.iframes` 是不可變的, 無法響應 `pop`, `push`, `splice`
+
+            tabs!.addEventListener("tab-change", e => {
+                // e.preventDefault() 阻止切換頁簽
+                const tab = (e as CustomEvent<MultiTabIframeAttrs>).detail
+                console.log("tab-change", tab)
+            })
+            tabs!.addEventListener("tab-close", e => {
+                // e.preventDefault() 阻止關閉頁簽
+                const tab = (e as CustomEvent<MultiTabIframeAttrs>).detail
+                console.log("tab-close", tab)
+            })
+        }
+
+        // code-ignore-start
+        document.addEventListener("astro:after-swap", e => {
+            if (e.target) {
+                const pathname = (e.target as Document).location.pathname
+                const components = pathname.replace(RegExp(`^${base}`), "")
+                if (components === "na-multi-tabs") onload()
+            }
+        })
+        // code-ignore-end
+
+        onload()
+    </script>
+</App>
+
+<style>
+    section {
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+    }
+</style>

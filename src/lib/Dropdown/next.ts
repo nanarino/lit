@@ -5,10 +5,7 @@ import type { DropdownProps } from "./interface"
 export type { DropdownProps } from "./interface"
 
 @customElement("na-dropdown")
-export class Dropdown
-    extends NanarinoLitComponent
-    implements DropdownProps
-{
+export class Dropdown extends NanarinoLitComponent implements DropdownProps {
     @property({ attribute: "dialog-popover", type: String }) dialogPopover:
         | "auto"
         | "manual"
@@ -105,7 +102,7 @@ export class Dropdown
             background: none;
             font-family: inherit;
             font-style: inherit;
-            font-family: inherit;
+            color: inherit;
         }
     `
 }

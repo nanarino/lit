@@ -138,20 +138,20 @@ export class Pagination
             <button
                 class="na-button"
                 data-primary
-                ?disabled="${!this.total || this.current == 1}"
+                ?disabled=${!this.total || this.current == 1}
                 data-to="${this.current - 1}"
             >
                 ${unsafeHTML(left)}
             </button>
             ${map(
-                this.pages as PageButton[],
+                this.pages,
                 btn => html`
                     <button
                         class="na-button"
                         ?disabled=${btn.attribute.disabled}
                         ?data-primary=${btn.attribute["data-primary"]}
                         ?data-ellipsis=${btn.attribute["data-ellipsis"]}
-                        data-to=${btn.attribute["data-to"]}
+                        data-to="${btn.attribute["data-to"]}"
                     >
                         ${btn.innerText}
                     </button>
@@ -160,7 +160,7 @@ export class Pagination
             <button
                 class="na-button"
                 data-primary
-                ?disabled="${!this.total || this.current == this.total}"
+                ?disabled=${!this.total || this.current == this.total}
                 data-to="${this.current + 1}"
             >
                 ${unsafeHTML(right)}
