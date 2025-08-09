@@ -68,8 +68,10 @@ import App from "@/layouts/app.astro"
         document.addEventListener("astro:after-swap", e => {
             if (e.target) {
                 const pathname = (e.target as Document).location.pathname
-                const components = pathname.replace(RegExp(`^${base}`), "")
-                if (components === "na-multi-tabs") onload()
+                const component = pathname
+                    .replace(RegExp(`^${base}`), "")
+                    .replace(/\/$/, "")
+                if (component === "na-multi-tabs") onload()
             }
         })
         // code-ignore-end

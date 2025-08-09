@@ -44,8 +44,10 @@ import App from "@/layouts/app.astro"
             if (e.target) {
                 const pathname = (e.target as Document).location.pathname
                 const base = import.meta.env.BASE_URL
-                const components = pathname.replace(RegExp(`^${base}`), "")
-                if (components === "na-pagination") onload()
+                const component = pathname
+                    .replace(RegExp(`^${base}`), "")
+                    .replace(/\/$/, "")
+                if (component === "na-pagination") onload()
             }
         })
         // code-ignore-end
