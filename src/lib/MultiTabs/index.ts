@@ -116,6 +116,21 @@ export class MultiTabs extends NanarinoLitComponent implements MultiTabsProps {
             list-style: none;
             margin: 0;
             height: calc(var(--line-height-body) + 9px);
+            overflow-y: hidden;
+            white-space: nowrap;
+        }
+
+        /* 隱藏過多頁簽時出現的滾動條,但是大螢幕 */
+        @media screen and (min-width: 768px) {
+            ul ::-webkit-scrollbar {
+                width: 0;
+                height: 0;
+            }
+        }
+        @media screen and (min-width: 768px) {
+            ul {
+                scrollbar-width: none;
+            }
         }
 
         .na-tab {
