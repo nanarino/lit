@@ -1,4 +1,4 @@
-# na-lit
+# nanarinostyl/lit
 
 [![pnpm v9](https://img.shields.io/badge/maintained%20with-pnpm%209.0-cc00ff.svg?style=for-the-badge&logo=pnpm)](https://pnpm.io/)
 [![nodejs v20](https://img.shields.io/badge/Node.js-v20.17.0-026e00.svg?style=for-the-badge&logo=nodedotjs)](https://nodejs.org/)
@@ -35,7 +35,7 @@ pnpm build
 ```astro
 ---
 import nanarinostyl from "nanarinostyl?url"
-import customstyl from "src/styles/custom.styl?inline"
+import customstyl from "@/styles/custom.styl?inline"
 ---
 <html lang="zh-TW">
     <head>
@@ -43,7 +43,7 @@ import customstyl from "src/styles/custom.styl?inline"
         <link rel="stylesheet" href={nanarinostyl} />
         <!-- 或者使用 ?inline 引入自訂後的 nanarinostyl, 同樣作為第一個 或指定ID -->
         <Fragment set:html={`<style id="main-style">${customstyl}</style>`} />
-        <script src="src/index"></script>
+        <script src="@/scripts/client/init"></script>
     </head>
     <body>
         <slot />
@@ -56,7 +56,7 @@ import customstyl from "src/styles/custom.styl?inline"
 為了減小包體積，樣式是額外注入的
 
 ```ts
-// src/index.ts
+// @/scripts/client/init
 
 import { NanarinoLitComponent } from "na-lit/dist/all.js"
 // import 立即註冊元件 作為副作用
@@ -74,7 +74,7 @@ for (const css of Array.from(nanarinostyl?.cssRules ?? []).reverse()) {
 }
 ```
 
-頁面中使用，如 
+頁面中使用，如
 
 ```astro
 <section>

@@ -23,7 +23,7 @@ const customstyl = '`<style id="customstyl">${customstyl}</style>`'
     code={dedent`
         ---
         import nanarinostyl from "nanarinostyl?url"
-        import customstyl from "src/styles/custom.styl?inline"
+        import customstyl from "@/styles/custom.styl?inline"
         ---
         <html lang="zh-TW">
             <head>
@@ -31,7 +31,7 @@ const customstyl = '`<style id="customstyl">${customstyl}</style>`'
                 <link rel="stylesheet" href={nanarinostyl} />
                 <!-- 或者使用 ?inline 引入自訂後的 nanarinostyl, 同樣作為第一個 或指定ID -->
                 <Fragment set:html={${customstyl}} />
-                <script src="src/index"></script>
+                <script src="@/scripts/client/init"></script>
             </head>
             <body>
                 <slot />
@@ -46,7 +46,7 @@ const customstyl = '`<style id="customstyl">${customstyl}</style>`'
 
 <Code
     code={dedent`
-        // src/init
+        // @/scripts/client/init
 
         import { NanarinoLitComponent } from "na-lit/dist/all.js"
         // import 立即註冊元件 作為副作用
