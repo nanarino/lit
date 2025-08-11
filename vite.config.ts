@@ -2,7 +2,7 @@ import { resolve, join, sep, posix } from "node:path"
 import { readdir, stat } from "node:fs/promises"
 import { defineConfig } from "vite"
 import alias from "@holy-two/vite-plugin-alias"
-import dts from "vite-plugin-dts"
+import dts from 'unplugin-dts/vite'
 
 async function ls(dirpath: string, rootpath = dirpath) {
     rootpath = rootpath.replace(/\/$/, "").replace(/^.\//, "")
@@ -36,7 +36,8 @@ export default defineConfig({
         alias(),
         dts({
             include: ["./src/lib"],
-            rollupTypes: true,
+            // 全部要用: --> dist/na-lit.js
+            // bundleTypes: true,
             compilerOptions: {
                 types: ["./.astro/types.d.ts"],
             },

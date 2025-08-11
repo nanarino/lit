@@ -1,33 +1,37 @@
 ---
 import Code from "../Code/index.astro"
 import dedent from "dedent"
+
+const customstyl = '`<style id="customstyl">${customstyl}</style>`'
 ---
 
 <h3 class="na-title">套件獲取</h3>
 
 <p class="na-paragraph">
-    暫時未計劃發佈到 <a
-        class="na-link"
-        href="https://www.npmjs.com/"
-        target="_blank"
-    >
+    暫時未計劃發佈到
+    <a class="na-code na-link" href="https://www.npmjs.com/" target="_blank">
         npm
-    </a>, 可以建議自订構建出 <code class="na-code na-code-no-bg">nanarinostyl</code> (
-    <code class="na-code">nanarinostyl/dist/style.min.css</code>
-    ) 和 <code class="na-code na-code-no-bg">na-lit</code> (
-    <code class="na-code">na-lit/dist/all.js</code>或按需
-    ) 放置在自己專案的 <code class="na-code na-code-no-bg">assets</code> 或 <code
-        class="na-code na-code-no-bg">public</code
-    > 目錄中, 並且在 <code class="na-code na-code-no-bg">html</code> 引入
+    </a> ，可以從源程式碼自订構建出
+    <code class="na-code na-code-no-bg">na-lit</code>
+    ( <code class="na-code">na-lit/dist/all.js</code>或按需 ) 放置在自己專案的 <code
+        class="na-code na-code-no-bg">assets</code
+    > 或 <code class="na-code na-code-no-bg">public</code> 目錄中， 並且在
+    <code class="na-code na-code-no-bg">html</code> 引入
 </p>
 
 <Code
     code={dedent`
+        ---
+        import nanarinostyl from "nanarinostyl?url"
+        import customstyl from "src/styles/custom.styl?inline"
+        ---
         <html lang="zh-TW">
             <head>
                 <!-- 記住它是第幾個 第一個  -->
-                <link rel="stylesheet" href="nanarinostyl.min.css" />
-                <script src="@/scripts/client/init"></script>
+                <link rel="stylesheet" href={nanarinostyl} />
+                <!-- 或者使用 ?inline 引入自訂後的 nanarinostyl, 同樣作為第一個 或指定ID -->
+                <Fragment set:html={${customstyl}} />
+                <script src="src/index"></script>
             </head>
             <body>
                 <slot />
@@ -42,13 +46,13 @@ import dedent from "dedent"
 
 <Code
     code={dedent`
-        // src/scripts/client/init
+        // src/init
 
         import { NanarinoLitComponent } from "na-lit/dist/all.js"
         // import 立即註冊元件 作為副作用
         // 或按需: import { NanarinoLitComponent } from "na-lit/dist/base.js"
 
-        // 影子DOM内部樣式復用外部的全局樣式 需要保證是[0]
+        // 影子DOM内部樣式復用外部的全局樣式 需要保證是[0], 或透過ID獲取
         const nanarinostyl = document.styleSheets[0]
         for (const css of Array.from(nanarinostyl?.cssRules ?? []).reverse()) {
             // 點解要用try 見 https://github.com/nanarino/na-lit/issues/1
@@ -62,7 +66,7 @@ import dedent from "dedent"
     lang="typescript"
 />
 
-<p class="na-paragraph">頁面中使用</p>
+<p class="na-paragraph">頁面中使用，如</p>
 
 <Code
     code={dedent`
@@ -72,7 +76,11 @@ import dedent from "dedent"
     `}
 />
 
-<p class="na-paragraph">按需須要單獨引入 如(<code class="na-code">import "na-lit/dist/Pagination/index.js"</code>)</p>
+<p class="na-paragraph">
+    按需須要單獨引入，如(<code class="na-code"
+        >import "na-lit/dist/Pagination/index.js"</code
+    >)
+</p>
 
 <h4 class="na-title">
     避免
