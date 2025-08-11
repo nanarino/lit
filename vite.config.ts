@@ -1,13 +1,41 @@
-import { resolve } from "node:path"
+import { resolve, join, sep, posix } from "node:path"
+import { readdir, stat } from "node:fs/promises"
 import { defineConfig } from "vite"
 import alias from "@holy-two/vite-plugin-alias"
 import dts from "vite-plugin-dts"
+
+async function ls(dirpath: string, rootpath = dirpath) {
+    rootpath = rootpath.replace(/\/$/, "").replace(/^.\//, "")
+    let result_path: Record<string, string> = {}
+    if ((await stat(resolve(dirpath))).isFile()) {
+        return /\.ts$/.test(dirpath) &&
+            !/\.d\.ts$/.test(dirpath) &&
+            !/interface\.ts$/.test(dirpath)
+            ? {
+                  [dirpath
+                      .replace(new RegExp(`^${rootpath}\/`), "")
+                      .replace(/\.ts$/, "")]: dirpath,
+              }
+            : {}
+    }
+    for (const filepath of (await readdir(dirpath)).map(filename =>
+        join(dirpath, filename).split(sep).join(posix.sep)
+    )) {
+        result_path = {
+            ...result_path,
+            ...(await ls(filepath, rootpath)),
+        }
+    }
+    return result_path
+}
+
+const entry = await ls("./src/lib")
 
 export default defineConfig({
     plugins: [
         alias(),
         dts({
-            include: ["src/lib"],
+            include: ["./src/lib"],
             rollupTypes: true,
             compilerOptions: {
                 types: ["./.astro/types.d.ts"],
@@ -16,7 +44,10 @@ export default defineConfig({
     ],
     build: {
         lib: {
-            entry: resolve("./src/lib/index.ts"),
+            // 按需可搖: --> dist/[components]/index.js
+            entry,
+            // 全部要用: --> dist/na-lit.js
+            // entry: resolve("./src/lib/index.ts"),
             formats: ["es"],
         },
     },

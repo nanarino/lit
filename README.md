@@ -30,7 +30,7 @@ pnpm build
 
 ## 利用
 
-先要自订構建出 nanarinostyl ( `nanarinostyl/dist/style.min.css` ) 和 na-lit ( `dist/na-lit.js` ) 放置在自己專案的 `assets` 或 `public` 目錄中，並且在 html 引入
+暫時未計劃發佈到 [npm](https://www.npmjs.com/), 可以自订構建出 nanarinostyl ( `nanarinostyl/dist/style.min.css` ) 和 na-lit ( `na-lit/dist/all.js` 或者按需 ) 放置在自己專案的 `assets` 或 `public` 目錄中，並且在 html 引入
 
 ```astro
 <html lang="zh-TW">
@@ -52,7 +52,9 @@ pnpm build
 ```ts
 // src/index.ts
 
-import { NanarinoLitComponent } from "@/assets/na-lit.js"
+import { NanarinoLitComponent } from "na-lit/dist/all.js"
+// import 立即註冊元件 作為副作用
+// 或按需: import { NanarinoLitComponent } from "na-lit/dist/base.js"
 
 // 影子DOM内部樣式復用外部的全局樣式 需要保證是[0]
 const nanarinostyl = document.styleSheets[0]
@@ -73,6 +75,8 @@ for (const css of Array.from(nanarinostyl?.cssRules ?? []).reverse()) {
     <na-pagination total="36"></na-pagination>
 </section>
 ```
+
+按需須要單獨引入 如 `import "na-lit/dist/Pagination/index.js"`
 
 ### 避免[FOUC](https://en.wikipedia.org/wiki/Flash_of_unstyled_content)
 
