@@ -1,7 +1,7 @@
 # nanarinostyl/lit
 
-[![pnpm v9](https://img.shields.io/badge/maintained%20with-pnpm%209.0-cc00ff.svg?style=for-the-badge&logo=pnpm)](https://pnpm.io/)
-[![nodejs v20](https://img.shields.io/badge/Node.js-v20.17.0-026e00.svg?style=for-the-badge&logo=nodedotjs)](https://nodejs.org/)
+[![pnpm v9](https://img.shields.io/badge/maintained%20with-pnpm%209.15-cc00ff.svg?style=for-the-badge&logo=pnpm)](https://pnpm.io/)
+[![nodejs v22](https://img.shields.io/badge/Node.js-v22.12-026e00.svg?style=for-the-badge&logo=nodedotjs)](https://nodejs.org/)
 
 一个 [nanarinostyl](https://nanarino.github.io/stylus/) 主題的 [lit](https://lit.dev/) 元件合集
 
@@ -12,7 +12,7 @@ pnpm i
 pnpm dev
 ```
 
-本地開發環境下在 `127.0.0.1` 中會額外引入字體作爲測試
+本地開發環境下在 `127.0.0.1` 中會自訂樣式和額外引入字體作爲測試
 
 ### 约束
 
@@ -30,19 +30,26 @@ pnpm build
 
 ## 利用
 
-暫時未計劃發佈到 [npm](https://www.npmjs.com/), 可以從源程式碼自订構建出 na-lit ( `na-lit/dist/all.js` 或者按需 ) 放置在自己專案的 `assets` 或 `public` 目錄中，並且在 html 引入
+元件暫時未計劃發佈到 [npm](https://www.npmjs.com/), 可以從源程式碼自订構建出 na-lit ( `na-lit/dist/all.js` 或者按需 ) 放置在自己專案的 `assets` 或 `public` 目錄中，或者直接拷貝到自己的專案
+
+先決條件是引入 `nanarinostyl`，以 `astro` 為例
+
+```shell
+pnpm i nanarinostyl
+```
 
 ```astro
 ---
 import nanarinostyl from "nanarinostyl?url"
-import customstyl from "@/styles/custom.styl?inline"
 ---
 <html lang="zh-TW">
     <head>
-        <!-- 記住它是第幾個 第一個  -->
+        <!-- 先引入樣式套件 記住它是第幾個 第一個 或指定ID -->
         <link rel="stylesheet" href={nanarinostyl} />
-        <!-- 或者使用 ?inline 引入自訂後的 nanarinostyl, 同樣作為第一個 或指定ID -->
-        <Fragment set:html={`<style id="main-style">${customstyl}</style>`} />
+        <!-- 或者使用 引入自訂後的 nanarinostyl, 同樣作為第一個 或指定ID -->
+        <!-- 見 https://github.com/nanarino/na-lit/blob/main/src/styles/custom.styl -->
+
+        <!-- 初始化客戶端 -->
         <script src="@/scripts/client/init"></script>
     </head>
     <body>
@@ -50,8 +57,6 @@ import customstyl from "@/styles/custom.styl?inline"
     </body>
 </html>
 ```
-
-### 注冊元件 并注入樣式
 
 為了減小包體積，樣式是額外注入的
 
@@ -82,7 +87,7 @@ for (const css of Array.from(nanarinostyl?.cssRules ?? []).reverse()) {
 </section>
 ```
 
-按需須要單獨引入，如 `import "na-lit/dist/Pagination/index.js"`
+按需須要單獨註冊，如 `import "na-lit/dist/Pagination/index.js"` 以使用 `<na-pagination />`
 
 ### 避免[FOUC](https://en.wikipedia.org/wiki/Flash_of_unstyled_content)
 

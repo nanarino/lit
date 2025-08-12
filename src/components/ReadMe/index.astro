@@ -1,36 +1,31 @@
 ---
 import Code from "../Code/index.astro"
 import dedent from "dedent"
-
-const customstyl = '`<style id="customstyl">${customstyl}</style>`'
+// 就一個 readme 不想引入 mdx
 ---
 
-<h3 class="na-title">套件獲取</h3>
+<h3 class="na-title">先決條件</h3>
 
-<p class="na-paragraph">
-    暫時未計劃發佈到
-    <a class="na-code na-link" href="https://www.npmjs.com/" target="_blank">
-        npm
-    </a> ，可以從源程式碼自订構建出
-    <code class="na-code na-code-no-bg">na-lit</code>
-    ( <code class="na-code">na-lit/dist/all.js</code>或按需 ) 放置在自己專案的 <code
-        class="na-code na-code-no-bg">assets</code
-    > 或 <code class="na-code na-code-no-bg">public</code> 目錄中， 並且在
-    <code class="na-code na-code-no-bg">html</code> 引入
-</p>
+<Code
+    code={dedent`
+        pnpm i nanarinostyl
+    `}
+    lang="shell"
+/>
 
 <Code
     code={dedent`
         ---
         import nanarinostyl from "nanarinostyl?url"
-        import customstyl from "@/styles/custom.styl?inline"
         ---
         <html lang="zh-TW">
             <head>
-                <!-- 記住它是第幾個 第一個  -->
+                <!-- 先引入樣式套件 記住它是第幾個 第一個 或指定ID -->
                 <link rel="stylesheet" href={nanarinostyl} />
-                <!-- 或者使用 ?inline 引入自訂後的 nanarinostyl, 同樣作為第一個 或指定ID -->
-                <Fragment set:html={${customstyl}} />
+                <!-- 或者使用 引入自訂後的 nanarinostyl, 同樣作為第一個 或指定ID -->
+                <!-- 見 https://github.com/nanarino/na-lit/blob/main/src/styles/custom.styl -->
+
+                <!-- 初始化客戶端 -->
                 <script src="@/scripts/client/init"></script>
             </head>
             <body>
@@ -40,7 +35,18 @@ const customstyl = '`<style id="customstyl">${customstyl}</style>`'
     `}
 />
 
-<h4 class="na-title">注冊元件 并注入樣式</h4>
+<h4 class="na-title">套用元件</h4>
+
+<p class="na-paragraph">
+    元件暫時未計劃發佈到
+    <a class="na-code na-link" href="https://www.npmjs.com/" target="_blank">
+        npm
+    </a> ，可以從源程式碼自订構建出
+    <code class="na-code na-code-no-bg">na-lit</code>
+    ( <code class="na-code">na-lit/dist/all.js</code>或按需 ) 放置在自己專案的 <code
+        class="na-code na-code-no-bg">assets</code
+    > 或 <code class="na-code na-code-no-bg">public</code> 目錄中， 或者直接拷貝到自己的專案
+</p>
 
 <p class="na-paragraph">為了減小包體積，樣式是額外注入的</p>
 
@@ -77,9 +83,9 @@ const customstyl = '`<style id="customstyl">${customstyl}</style>`'
 />
 
 <p class="na-paragraph">
-    按需須要單獨引入，如(<code class="na-code"
-        >import "na-lit/dist/Pagination/index.js"</code
-    >)
+    按需須要單獨註冊，如 (
+    <code class="na-code">import "na-lit/dist/Pagination/index.js"</code>
+    以使用 <code class="na-code na-code-no-bg">{`<na-pagination />`}</code>)
 </p>
 
 <h4 class="na-title">

@@ -1,6 +1,7 @@
 ---
 import { ClientRouter } from "astro:transitions"
 import nanarinostyl from "nanarinostyl?url"
+import customstyl from "@/styles/custom.styl?url"
 import themeIIFE from "@holy-two/data-theme/dist/iife?url"
 import iconifyIIFE from "iconify-icon/dist/iconify-icon.min?url"
 import cssDoodleIIFE from "css-doodle?url"
@@ -18,6 +19,16 @@ interface Props {
 }
 const title = Astro.props.title || Astro.props.frontmatter?.title || "na-lit"
 const github = Astro.props.github || Astro.props.frontmatter?.github
+
+let style: string
+/**
+ * 測試自訂樣式套件的效果
+ */
+if (import.meta.env.DEV && Astro.url.hostname === "127.0.0.1") {
+    style = customstyl
+} else {
+    style = nanarinostyl
+}
 ---
 
 <html lang="zh-TW">
@@ -31,7 +42,7 @@ const github = Astro.props.github || Astro.props.frontmatter?.github
             type="image/svg+xml"
             href={import.meta.env.BASE_URL + "clover.svg"}
         />
-        <link rel="stylesheet" href={nanarinostyl} />
+        <link rel="stylesheet" href={style} />
         <style is:inline>
             *:not(:defined) {
                 display: none;
