@@ -25,6 +25,14 @@ export class MultiTabs extends NanarinoLitComponent implements MultiTabsProps {
         super()
     }
 
+    get activedIframe() {
+        const iframe = this.shadowRoot?.querySelector("iframe[data-active]") as
+            | HTMLIFrameElement
+            | null
+            | undefined
+        return iframe
+    }
+
     render() {
         return html`
             <ul class="na-layout-header">
