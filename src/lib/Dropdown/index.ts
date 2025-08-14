@@ -1,6 +1,7 @@
-import { NanarinoLitComponent } from "@/lib/base"
+import { NanarinoLitComponent } from "../base"
 import { html, css } from "lit"
 import { customElement, queryAssignedNodes, property } from "lit/decorators.js"
+import { ref, type Ref, createRef } from "lit/directives/ref.js"
 import type { DropdownProps } from "./interface"
 export type { DropdownProps } from "./interface"
 
@@ -21,17 +22,9 @@ export class Dropdown extends NanarinoLitComponent implements DropdownProps {
     @queryAssignedNodes({ slot: "dropdown", flatten: true })
     dropdownSlotNodes!: Array<Node>
 
-    private _id: string
-
-    constructor() {
-        super()
-        this._id = crypto.getRandomValues(new Uint32Array(1))[0].toString()
-    }
-
+    dialogRef: Ref<HTMLDialogElement> = createRef()
     get dialog() {
-        return this.shadowRoot?.getElementById(
-            this._id
-        ) as HTMLDialogElement | null
+        return this.dialogRef.value
     }
 
     toggle() {
@@ -67,7 +60,7 @@ export class Dropdown extends NanarinoLitComponent implements DropdownProps {
             </button>
             <dialog
                 class="na-dropdown sm"
-                id="${this._id}"
+                ${ref(this.dialogRef)}
                 @close="${this.handleClose}"
                 style="${this.dialogStyle}"
             >

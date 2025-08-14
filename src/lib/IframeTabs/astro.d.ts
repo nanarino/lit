@@ -1,9 +1,9 @@
-import { MultiTabsProps } from "."
+import { IframeTabsProps } from "."
 
 declare global {
     namespace astroHTML.JSX {
         interface IntrinsicElements {
-            "na-multi-tabs": MultiTabsProps
+            "na-iframe-tabs": IframeTabsProps
         }
     }
 }

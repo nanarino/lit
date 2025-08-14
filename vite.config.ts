@@ -39,7 +39,7 @@ export default defineConfig({
             // 全部要用: --> dist/na-lit.js
             // bundleTypes: true,
             compilerOptions: {
-                types: ["./.astro/types.d.ts"],
+                types: ["astro/client"],
             },
         }),
     ],
@@ -48,7 +48,7 @@ export default defineConfig({
             // 按需可搖: --> dist/[components]/index.js
             entry,
             // 全部要用: --> dist/na-lit.js
-            // entry: resolve("./src/lib/index.ts"),
+            // entry: resolve("./src/lib/all.ts"),
             formats: ["es"],
         },
     },

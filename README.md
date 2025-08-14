@@ -30,8 +30,6 @@ pnpm build
 
 ## 利用
 
-元件暫時未計劃發佈到 [npm](https://www.npmjs.com/), 可以從源程式碼自订構建出 na-lit ( `na-lit/dist/all.js` 或者按需 ) 放置在自己專案的 `assets` 或 `public` 目錄中，或者直接拷貝到自己的專案
-
 先決條件是引入 `nanarinostyl`，以 `astro` 為例
 
 ```shell
@@ -56,6 +54,21 @@ import nanarinostyl from "nanarinostyl?url"
         <slot />
     </body>
 </html>
+```
+
+元件暫時未計劃發佈到 [npm](https://www.npmjs.com/), 可以從源程式碼自订構建出 na-lit ( `na-lit/dist/all.js` 或者按需 ) 放置在自己專案的 `assets` 或 `public` 目錄中，或者直接拷貝到自己的專案
+
+```diff
+// package.json
+{
+  "dependencies": {
++    "@nanarinostyl/lit": "github:nanarino/na-lit",
+  }
+}
+```
+
+```shell
+pnpm update @nanarinostyl/lit
 ```
 
 為了減小包體積，樣式是額外注入的

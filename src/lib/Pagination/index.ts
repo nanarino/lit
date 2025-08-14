@@ -1,4 +1,4 @@
-import { NanarinoLitComponent } from "@/lib/base"
+import { NanarinoLitComponent } from "../base"
 import { type PropertyValues, html, css } from "lit"
 import { customElement, property, state } from "lit/decorators.js"
 import { map } from "lit/directives/map.js"

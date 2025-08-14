@@ -48,6 +48,26 @@ import dedent from "dedent"
     > 或 <code class="na-code na-code-no-bg">public</code> 目錄中， 或者直接拷貝到自己的專案
 </p>
 
+<Code
+    code={dedent`
+        // package.json
+
+        {
+            "dependencies": {
+                "@nanarinostyl/lit": "github:nanarino/na-lit",
+            }
+        }
+    `}
+    lang="jsonc"
+/>
+
+<Code
+    code={dedent`
+        pnpm update @nanarinostyl/lit
+    `}
+    lang="shell"
+/>
+
 <p class="na-paragraph">為了減小包體積，樣式是額外注入的</p>
 
 <Code

@@ -1,4 +1,4 @@
-import { NanarinoLitComponent } from "@/lib/base"
+import { NanarinoLitComponent } from "../base"
 import { html, css } from "lit"
 import { customElement, property } from "lit/decorators.js"
 

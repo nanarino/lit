@@ -1,43 +1,41 @@
-import { NanarinoLitComponent } from "@/lib/base"
+import { NanarinoLitComponent } from "../base"
 import { html, css } from "lit"
-import { customElement, property } from "lit/decorators.js"
+import { customElement, property, query, queryAll } from "lit/decorators.js"
 import { unsafeHTML } from "lit/directives/unsafe-html.js"
 import { map } from "lit/directives/map.js"
 import close from "@/assets/close.svg?raw"
 
-export interface MultiTabsProps extends Omit<Partial<HTMLElement>, "children"> {
+export interface IframeTabsProps
+    extends Omit<Partial<HTMLElement>, "children"> {
     active?: string
 }
 
-export type MultiTabIframeAttrs = {
+export type IframeAttrs = {
     src: string
     title: string
     key: string
-    closeabled?: boolean
+    closeable?: boolean
 }
 
-@customElement("na-multi-tabs")
-export class MultiTabs extends NanarinoLitComponent implements MultiTabsProps {
+@customElement("na-iframe-tabs")
+export class IframeTabs
+    extends NanarinoLitComponent
+    implements IframeTabsProps
+{
     @property({ type: String }) active: string = ""
-    @property({ type: Array }) iframes: MultiTabIframeAttrs[] = []
+    @property({ type: Array }) data: IframeAttrs[] = []
 
-    constructor() {
-        super()
-    }
+    @queryAll("iframe")
+    iframes!: NodeListOf<HTMLIFrameElement>
 
-    get activedIframe() {
-        const iframe = this.shadowRoot?.querySelector("iframe[data-active]") as
-            | HTMLIFrameElement
-            | null
-            | undefined
-        return iframe
-    }
+    @query("iframe[data-active]")
+    activedIframe?: HTMLIFrameElement
 
     render() {
         return html`
             <ul class="na-layout-header">
                 ${map(
-                    this.iframes,
+                    this.data,
                     attrs => html`
                         <li
                             class="na-tab"
@@ -74,21 +72,22 @@ export class MultiTabs extends NanarinoLitComponent implements MultiTabsProps {
                                             })
                                         )
                                     ) {
-                                        const index =
-                                            this.iframes.indexOf(attrs)
-                                        this.iframes = this.iframes.filter(
+                                        const index = this.data.indexOf(attrs)
+                                        this.data = this.data.filter(
                                             item => item.key !== attrs.key
                                         )
                                         if (this.active === attrs.key) {
                                             this.active =
-                                                this.iframes.at(index)?.key ??
-                                                this.iframes.at(-1)?.key ??
+                                                this.data.at(index)?.key ??
+                                                this.data.at(-1)?.key ??
                                                 ""
                                         }
                                     }
                                 }}
                             >
-                                ${attrs.closeabled && unsafeHTML(close)}
+                                ${unsafeHTML(
+                                    attrs.closeable ?? true ? close : ""
+                                )}
                             </button>
                         </li>
                     `
@@ -96,7 +95,7 @@ export class MultiTabs extends NanarinoLitComponent implements MultiTabsProps {
             </ul>
             <main class="na-layout-content">
                 ${map(
-                    this.iframes,
+                    this.data,
                     attrs =>
                         html`<iframe
                             title="${attrs.title}"
