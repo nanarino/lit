@@ -114,6 +114,8 @@ export class IframeTabs
             flex: 1;
             width: 100%;
             gap: 2px;
+            --font-size-tabs: var(--font-size-body);
+            --line-height-tabs: var(--line-height-body);
         }
 
         ul {
@@ -122,7 +124,7 @@ export class IframeTabs
             padding: 0 8px;
             list-style: none;
             margin: 0;
-            height: calc(var(--line-height-body) + 9px);
+            height: calc(var(--line-height-tabs) + 9px);
             overflow-y: hidden;
             white-space: nowrap;
         }
@@ -149,8 +151,8 @@ export class IframeTabs
 
         .na-tab-name {
             padding: 3px 0;
-            font-size: var(--font-size-body);
-            line-height: var(--line-height-body);
+            font-size: var(--font-size-tabs);
+            line-height: var(--line-height-tabs);
             border-width: 2px 0;
             border-style: solid;
             border-color: transparent;

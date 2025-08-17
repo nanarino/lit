@@ -170,7 +170,7 @@ export class Pagination
 
     static styles = css`
         button {
-            --padding-horizonal-button: 0;
+            --padding-horizontal-button: 0;
             min-width: calc(
                 var(--line-height-body, 22px) +
                     var(--padding-vertical-button, 5px) * 2

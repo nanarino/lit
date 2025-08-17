@@ -14,7 +14,7 @@
     }
     + function () {
         sn.unshift(n = sn[0] + fx)
-        ; (sn.indexOf(n, 1) > 0 || n < 0 || n > 399 || fx == 1 && n % 20 == 0 || fx == -1 && n % 20 == 19) && (top.tabs.active === "python" && alert("GAME OVER"),location.reload())//死法判断
+        ; (sn.indexOf(n, 1) > 0 || n < 0 || n > 399 || fx == 1 && n % 20 == 0 || fx == -1 && n % 20 == 19) && (top?.tabs?.active === "python" && alert("GAME OVER"),location.reload())//死法判断
         if (draw(n, `hsl(${color},${9000 / v}%,${9000 / v}%)`) == dz) {//渲染蛇身
             while (sn.indexOf(dz = ~~(Math.random() * 400)) !== -1);//随机选择位置准备生成食物
             draw(dz, `hsl(${color + 180},${130 - 9000 / v}%,${130 - 9000 / v}%)`)//渲染食物
