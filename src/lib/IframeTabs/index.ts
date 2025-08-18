@@ -199,6 +199,7 @@ export class IframeTabs
         }
 
         .na-tab-close {
+            cursor: pointer;
             display: flex;
             align-items: center;
             height: fit-content;
