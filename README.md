@@ -16,6 +16,8 @@ pnpm dev
 
 ### 约束
 
+爲了可以源碼引入，不要使用路徑別名如 `@`
+
 爲了在 html 内能直接引入，lit 模板内不要第三方元件如 `<iconify-icon />`
 
 爲了在不安全的域下運行，不要使用安全性高的 API 如 `CSS.paintWorklet`

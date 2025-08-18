@@ -3,8 +3,8 @@ import { type PropertyValues, html, css } from "lit"
 import { customElement, property, state } from "lit/decorators.js"
 import { map } from "lit/directives/map.js"
 import { unsafeHTML } from "lit/directives/unsafe-html.js"
-import left from "@/assets/left.svg?raw"
-import right from "@/assets/right.svg?raw"
+import left from "../../assets/left.svg?raw"
+import right from "../../assets/right.svg?raw"
 
 export interface PaginationProps
     extends Omit<Partial<HTMLElement>, "children"> {

@@ -3,7 +3,7 @@ import { html, css } from "lit"
 import { customElement, property, query, queryAll } from "lit/decorators.js"
 import { unsafeHTML } from "lit/directives/unsafe-html.js"
 import { map } from "lit/directives/map.js"
-import close from "@/assets/close.svg?raw"
+import close from "../../assets/close.svg?raw"
 
 export interface IframeTabsProps
     extends Omit<Partial<HTMLElement>, "children"> {
