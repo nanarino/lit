@@ -11,12 +11,6 @@ importers:
 
   .:
     dependencies:
-      '@holy-two/data-theme':
-        specifier: ^0.0.6
-        version: 0.0.6
-      iconify-icon:
-        specifier: ^2.3.0
-        version: 2.3.0
       lit:
         specifier: ^3.3.1
         version: 3.3.1
@@ -27,6 +21,9 @@ importers:
       '@fontsource/jetbrains-mono':
         specifier: ^5.2.6
         version: 5.2.6
+      '@holy-two/data-theme':
+        specifier: ^0.0.6
+        version: 0.0.6
       '@holy-two/vite-plugin-alias':
         specifier: ^0.0.2
         version: 0.0.2(vite@6.3.5(@types/node@22.17.2)(stylus@0.64.0))
@@ -45,6 +42,9 @@ importers:
       dedent:
         specifier: ^1.6.0
         version: 1.6.0
+      iconify-icon:
+        specifier: ^2.3.0
+        version: 2.3.0
       style-to-object:
         specifier: ^1.0.9
         version: 1.0.9
