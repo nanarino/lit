@@ -57,11 +57,14 @@ import dedent from "dedent"
                 "@nanarinostyl/lit": "github:nanarino/na-lit#prepare",
             }
         }
-
-        // #prepare 可選 安裝時自動build 適用於無法解析資源的情況
     `}
     lang="jsonc"
 />
+
+<p class="na-paragraph">
+    分支 <code class="na-code na-code-no-bg">#prepare</code> 安裝時觸發自動構建,
+    在ts的裝飾器默認開啟之前是<b>必須</b>的
+</p>
 
 <Code
     code={dedent`
@@ -76,9 +79,9 @@ import dedent from "dedent"
     code={dedent`
         // @/scripts/client/init
 
-        import { NanarinoLitComponent } from "na-lit/dist/all.js"
+        import { NanarinoLitComponent } from "@nanarinostyl/lit/dist/all.js"
         // import 立即註冊元件 作為副作用
-        // 或按需: import { NanarinoLitComponent } from "na-lit/dist/base.js"
+        // 或按需: import { NanarinoLitComponent } from "@nanarinostyl/lit/dist/base.js"
 
         // 影子DOM内部樣式復用外部的全局樣式 需要保證是[0], 或透過ID獲取
         const nanarinostyl = document.styleSheets[0]
@@ -106,7 +109,7 @@ import dedent from "dedent"
 
 <p class="na-paragraph">
     按需須要單獨註冊，如 (
-    <code class="na-code">import "na-lit/dist/Pagination/index.js"</code>
+    <code class="na-code">import "@nanarinostyl/lit/dist/Pagination/index.js"</code>
     以使用 <code class="na-code na-code-no-bg">{`<na-pagination />`}</code>)
 </p>
 

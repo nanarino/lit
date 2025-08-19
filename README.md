@@ -58,7 +58,7 @@ import nanarinostyl from "nanarinostyl?url"
 </html>
 ```
 
-元件暫時未計劃發佈到 [npm](https://www.npmjs.com/), 可以從源程式碼自订構建出 na-lit ( `na-lit/dist/all.js` 或者按需 ) 放置在自己專案的 `assets` 或 `public` 目錄中，或者直接拷貝到自己的專案
+元件暫時未計劃發佈到 [npm](https://www.npmjs.com/), 或者直接從源程式碼拷貝到自己的專案, 或從 `github` 安裝:
 
 ```diff
 // package.json
@@ -67,8 +67,9 @@ import nanarinostyl from "nanarinostyl?url"
 +    "@nanarinostyl/lit": "github:nanarino/na-lit#prepare",
   }
 }
-// #prepare 可選 安裝時自動build 適用於無法解析資源的情況
 ```
+
+分支 `#prepare` 安裝時觸發自動構建, 在ts的裝飾器默認開啟之前是**必須**的
 
 ```shell
 pnpm update @nanarinostyl/lit
@@ -79,9 +80,9 @@ pnpm update @nanarinostyl/lit
 ```ts
 // @/scripts/client/init
 
-import { NanarinoLitComponent } from "na-lit/dist/all.js"
+import { NanarinoLitComponent } from "@nanarinostyl/lit/dist/all.js"
 // import 立即註冊元件 作為副作用
-// 或按需: import { NanarinoLitComponent } from "na-lit/dist/base.js"
+// 或按需: import { NanarinoLitComponent } from "@nanarinostyl/lit/dist/base.js"
 
 // 影子DOM内部樣式復用外部的全局樣式 需要保證是[0], 或透過ID獲取
 const nanarinostyl = document.styleSheets[0]
@@ -103,7 +104,7 @@ for (const css of Array.from(nanarinostyl?.cssRules ?? []).reverse()) {
 </section>
 ```
 
-按需須要單獨註冊，如 `import "na-lit/dist/Pagination/index.js"` 以使用 `<na-pagination />`
+按需須要單獨註冊，如 `import "@nanarinostyl/lit/dist/Pagination/index.js"` 以使用 `<na-pagination />`
 
 ### 避免[FOUC](https://en.wikipedia.org/wiki/Flash_of_unstyled_content)
 
