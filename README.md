@@ -64,9 +64,10 @@ import nanarinostyl from "nanarinostyl?url"
 // package.json
 {
   "dependencies": {
-+    "@nanarinostyl/lit": "github:nanarino/na-lit",
++    "@nanarinostyl/lit": "github:nanarino/na-lit#prepare",
   }
 }
+// #prepare 可選 安裝時自動build 適用於無法解析資源的情況
 ```
 
 ```shell
