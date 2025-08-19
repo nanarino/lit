@@ -1,6 +1,6 @@
 type cssText = string
 
-export interface DropdownProps extends Omit<Partial<HTMLElement>, "children"> {
+export interface DropdownProps {
     /** 氣泡框彈出模式 */
     "dialog-popover"?: "auto" | "manual" | "hint"
     /** 氣泡框彈出層樣式 */

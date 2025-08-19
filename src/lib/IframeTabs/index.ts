@@ -5,8 +5,7 @@ import { unsafeHTML } from "lit/directives/unsafe-html.js"
 import { map } from "lit/directives/map.js"
 import close from "../../assets/close.svg?raw"
 
-export interface IframeTabsProps
-    extends Omit<Partial<HTMLElement>, "children"> {
+export interface IframeTabsProps {
     active?: string
 }
 

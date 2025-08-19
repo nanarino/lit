@@ -2,7 +2,7 @@ import { type PropertyValues, html, css, LitElement } from "lit"
 import { customElement, property, queryAssignedNodes } from "lit/decorators.js"
 import mosaic from "../../assets/mosaic.svg?raw"
 
-export interface SvgIconProps extends Omit<Partial<HTMLElement>, "children"> {
+export interface SvgIconProps {
     src: string
 }
 

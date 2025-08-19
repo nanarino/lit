@@ -2,8 +2,7 @@ import { NanarinoLitComponent } from "../base"
 import { html, css } from "lit"
 import { customElement, property } from "lit/decorators.js"
 
-export interface CurrentMomentProps
-    extends Omit<Partial<HTMLElement>, "children"> {
+export interface CurrentMomentProps {
     locales?: Intl.LocalesArgument
 }
 

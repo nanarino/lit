@@ -6,8 +6,7 @@ import { unsafeHTML } from "lit/directives/unsafe-html.js"
 import left from "../../assets/left.svg?raw"
 import right from "../../assets/right.svg?raw"
 
-export interface PaginationProps
-    extends Omit<Partial<HTMLElement>, "children"> {
+export interface PaginationProps {
     index?: number
     current?: number
     total?: number
