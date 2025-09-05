@@ -55,7 +55,13 @@ export class Dropdown extends NanarinoLitComponent implements DropdownProps {
         if (dialog && target) {
             if (target.closest(this.closetarget)) {
                 this._will_close = true
-                setTimeout(() => dialog.hidePopover(), this.closesoon ? 0 : 600)
+                setTimeout(
+                    () => {
+                        dialog.hidePopover()
+                        this._will_close = false
+                    },
+                    this.closesoon ? 0 : 600
+                )
             }
         }
     }

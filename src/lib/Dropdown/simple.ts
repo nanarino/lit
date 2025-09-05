@@ -15,6 +15,14 @@ export class Dropdown extends NanarinoLitComponent implements DropdownProps {
     @property({ attribute: "dialog-style", type: String }) dialogStyle: string =
         ""
 
+    get closetarget() {
+        return void 0
+    }
+
+    get closesoon() {
+        return true
+    }
+
     @queryAssignedNodes()
     defaultSlotNodes!: Array<Node>
 

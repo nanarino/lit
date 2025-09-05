@@ -1,7 +1,6 @@
 import { resolve, join, sep, posix } from "node:path"
 import { readdir, stat } from "node:fs/promises"
 import { defineConfig } from "vite"
-import alias from "@holy-two/vite-plugin-alias"
 import dts from 'unplugin-dts/vite'
 
 async function ls(dirpath: string, rootpath = dirpath) {
@@ -33,7 +32,6 @@ const entry = await ls("./src/lib")
 
 export default defineConfig({
     plugins: [
-        alias(),
         dts({
             include: ["./src/lib"],
             // 全部要用: --> dist/na-lit.js
