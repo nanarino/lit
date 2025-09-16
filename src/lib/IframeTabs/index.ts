@@ -2,7 +2,7 @@ import { NanarinoLitComponent } from "../base"
 import { html, css } from "lit"
 import { customElement, property, query, queryAll } from "lit/decorators.js"
 import { unsafeHTML } from "lit/directives/unsafe-html.js"
-import { map } from "lit/directives/map.js"
+import { repeat } from "lit/directives/repeat.js"
 import close from "../../assets/close.svg?raw"
 
 export interface IframeTabsProps {
@@ -33,8 +33,9 @@ export class IframeTabs
     render() {
         return html`
             <ul class="na-layout-header">
-                ${map(
+                ${repeat(
                     this.data,
+                    i => i.key,
                     attrs => html`
                         <li
                             class="na-tab"
@@ -93,8 +94,9 @@ export class IframeTabs
                 )}
             </ul>
             <main class="na-layout-content">
-                ${map(
+                ${repeat(
                     this.data,
+                    i => i.key,
                     attrs =>
                         html`<iframe
                             title="${attrs.title}"
