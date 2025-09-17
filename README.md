@@ -84,7 +84,7 @@ pnpm update @nanarinostyl/lit
 
 為了減小包體積，樣式是額外注入的
 
-實際上這裡利用的 `LitElement.prototype.styles` 就是原生的 `shadowRoot.adoptedStyleSheets` (不可用時回退)
+實際上這裏利用的 `LitElement.prototype.styles` 就是原生的 `shadowRoot.adoptedStyleSheets` (不可用時回退)
 
 ```ts
 // @/scripts/client/init
