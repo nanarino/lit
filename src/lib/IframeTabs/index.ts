@@ -128,6 +128,7 @@ export class IframeTabs
             height: calc(var(--line-height-tabs) + 9px);
             overflow-y: hidden;
             white-space: nowrap;
+            background-color: rgb(var(--background-color-tabs, var(--white)));
         }
 
         /* 隱藏過多頁簽時出現的滾動條,但是大螢幕 */
