@@ -6,6 +6,12 @@ export interface SvgIconProps {
     src: string
 }
 
+export interface SvgIconEmits {
+    onLoadError: (
+        e: CustomEvent<Error>
+    ) => void | boolean | Promise<void> | Promise<boolean>
+}
+
 @customElement("na-svg-icon")
 export class SvgIcon extends LitElement implements SvgIconProps {
     @queryAssignedNodes()

@@ -10,7 +10,27 @@ export interface PaginationProps {
     index?: number
     current?: number
     total?: number
+    /**
+     * DOM property only
+     *
+     * in `vue`:
+     *
+     * ```vue
+     * <script setup>
+     * const total = ref(100), current = ref(1)
+     * </script>
+     * <template>
+     *     <na-pagination :total :current .onChange="_ => current = _" />
+     * <template>
+     * ```
+     */
     onChange?: ((current: number) => void | Promise<void>) | undefined | null
+}
+
+export interface PaginationEmits {
+    onPageTo: (
+        e: CustomEvent<number>
+    ) => void | boolean | Promise<void> | Promise<boolean>
 }
 
 export interface PageButton {
@@ -31,7 +51,7 @@ export class Pagination
     @property({ type: Number }) index: number = NaN
     @property({ type: Number }) current: number = NaN
     @property({ type: Number }) total: number = NaN
-    @property({ type: Function }) onChange:
+    @property({ type: Function, attribute: false }) onChange:
         | ((current: number) => void | Promise<void>)
         | undefined
         | null = (_current: number) => {}
