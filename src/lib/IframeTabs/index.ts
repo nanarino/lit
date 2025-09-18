@@ -7,6 +7,19 @@ import close from "../../assets/close.svg?raw"
 
 export interface IframeTabsProps {
     active?: string
+    /**
+     * DOM property only
+     *
+     * in `vue`:
+     *
+     * ```vue
+     * <na-iframe-tabs active="114514" .data="[
+     *     { src: '/home', title: 'home', key: '114514', closeable: false }
+     * ]" />
+     * ```
+     * 
+     */
+    data?: IframeAttrs[]
 }
 
 export type IframeAttrs = {
@@ -16,13 +29,22 @@ export type IframeAttrs = {
     closeable?: boolean
 }
 
+export interface IframeTabsEmits {
+    onTabChange: (
+        e: CustomEvent<IframeAttrs>
+    ) => void | boolean | Promise<void> | Promise<boolean>
+    onTabClose: (
+        e: CustomEvent<IframeAttrs>
+    ) => void | boolean | Promise<void> | Promise<boolean>
+}
+
 @customElement("na-iframe-tabs")
 export class IframeTabs
     extends NanarinoLitComponent
     implements IframeTabsProps
 {
     @property({ type: String }) active: string = ""
-    @property({ type: Array }) data: IframeAttrs[] = []
+    @property({ type: Array, attribute: false }) data: IframeAttrs[] = []
 
     @queryAll("iframe")
     iframes!: NodeListOf<HTMLIFrameElement>
