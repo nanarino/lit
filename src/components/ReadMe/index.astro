@@ -8,7 +8,7 @@ import dedent from "dedent"
 
 <Code
     code={dedent`
-        pnpm i nanarinostyl
+        pnpm i @nanarino/stylus
     `}
     lang="shell"
 />
@@ -21,13 +21,13 @@ import dedent from "dedent"
     code={dedent`
         ---
         // [!code word:data-nanarino-lit-provide]
-        import nanarinostyl from "nanarinostyl?url"
+        import stylus from "@nanarino/stylus?url"
         import ChienChiaF from "@/assets/fonts/ChienChia-F.styl?url"
         ---
         <html lang="zh-HK">
             <head>
                 <!-- 先引入樣式套件 並標記 -->
-                <link rel="stylesheet" href={nanarinostyl} data-nanarino-lit-provide />
+                <link rel="stylesheet" href={stylus} data-nanarino-lit-provide />
                 <link 
                     rel="stylesheet"
                     href={ChienChiaF}
@@ -57,24 +57,6 @@ import dedent from "dedent"
     > 或 <code class="na-code na-code-no-bg">public</code> 目錄中， 或者直接拷貝到自己的專案
 </p>
 
-<Code
-    code={dedent`
-        // package.json
-        
-        {
-            "dependencies": {
-                "@nanarinostyl/lit": "github:nanarino/na-lit#prepare", // [!code ++]
-            },
-            "pnpm": {
-                "overrides": {
-                    "nanarinostyl": "$nanarinostyl", // [!code ++]
-                }
-            }
-        }
-    `}
-    lang="jsonc"
-/>
-
 <p class="na-paragraph">
     分支 <code class="na-code na-code-no-bg">#prepare</code> 安裝時觸發自動構建,
     在ts的裝飾器默認開啓之前是<b>必須</b>的
@@ -82,7 +64,7 @@ import dedent from "dedent"
 
 <Code
     code={dedent`
-        pnpm update @nanarinostyl/lit
+        pnpm install @nanarino/lit
     `}
     lang="shell"
 />
@@ -100,9 +82,9 @@ import dedent from "dedent"
     code={dedent`
         // [!code word:data-nanarino-lit-provide]
         // import 立即宣告元件 作為副作用
-        import { NanarinoLitComponent } from "@nanarinostyl/lit/dist/all.js"
+        import { NanarinoLitComponent } from "@nanarino/lit/dist/all.js"
         // 或按需:
-        import { NanarinoLitComponent } from "@nanarinostyl/lit/dist/base"
+        import { NanarinoLitComponent } from "@nanarino/lit/dist/base"
 
         const provides = Array.from(
             document.querySelectorAll("link[data-nanarino-lit-provide]")
@@ -138,7 +120,7 @@ import dedent from "dedent"
 <p class="na-paragraph">
     按需須要單獨宣告，如 (
     <code class="na-code"
-        >import "@nanarinostyl/lit/dist/Pagination/index.js"</code
+        >import "@nanarino/lit/dist/Pagination/index.js"</code
     >
     以使用 <code class="na-code na-code-no-bg">{`<na-pagination />`}</code>)
 </p>

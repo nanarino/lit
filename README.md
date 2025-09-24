@@ -1,9 +1,9 @@
-# nanarinostyl/lit
+# @nanarino/lit
 
 [![pnpm v9](https://img.shields.io/badge/maintained%20with-pnpm%209.15-cc00ff.svg?style=for-the-badge&logo=pnpm)](https://pnpm.io/)
 [![nodejs v22](https://img.shields.io/badge/Node.js-v22.12-026e00.svg?style=for-the-badge&logo=nodedotjs)](https://nodejs.org/)
 
-一個 [nanarinostyl](https://nanarino.github.io/stylus/) 主題的 [lit](https://lit.dev/) 元件合集
+一個 [@nanarino/stylus](https://nanarino.github.io/stylus/) 主題的 [lit](https://lit.dev/) 元件合集
 
 ## 開發
 
@@ -30,21 +30,21 @@ pnpm build
 
 ## 利用
 
-先決條件是引入 `nanarinostyl`，以 `astro` 為例
+先決條件是引入 `@nanarino/stylus`，以 `astro` 為例
 
 ```shell
-pnpm i nanarinostyl
+pnpm i @nanarino/stylus
 ```
 
 ```astro
 ---
-import nanarinostyl from "nanarinostyl?url"
+import stylus from "@nanarino/stylus?url"
 import ChienChiaF from "@/assets/fonts/ChienChia-F.styl?url"
 ---
 <html lang="zh-TW">
     <head>
         <!-- 先引入樣式套件 並標記 [data-nanarino-lit-provide] -->
-        <link rel="stylesheet" href={nanarinostyl} data-nanarino-lit-provide />
+        <link rel="stylesheet" href={stylus} data-nanarino-lit-provide />
         <link
             rel="stylesheet"
             href={ChienChiaF}
@@ -60,26 +60,8 @@ import ChienChiaF from "@/assets/fonts/ChienChia-F.styl?url"
 </html>
 ```
 
-元件暫時未計劃發佈到 [npm](https://www.npmjs.com/), 或者直接從源程式碼拷貝到自己的專案, 或從 `github` 安裝:
-
-```diff
-// package.json
-{
-    "dependencies": {
-+       "@nanarinostyl/lit": "github:nanarino/na-lit#prepare",
-    },
-    "pnpm": {
-        "overrides": {
-+           "nanarinostyl": "$nanarinostyl",
-        }
-    }
-}
-```
-
-分支 `#prepare` 安裝時觸發自動構建, 在 ts 的裝飾器默認開啓之前是**必須**的
-
 ```shell
-pnpm update @nanarinostyl/lit
+pnpm install @nanarino/lit
 ```
 
 為了減小包體積，樣式是額外注入的
@@ -89,9 +71,9 @@ pnpm update @nanarinostyl/lit
 ```ts
 // @/scripts/client/init
 // import 立即註冊元件 作為副作用
-import { NanarinoLitComponent } from "@nanarinostyl/lit/dist/all.js"
+import { NanarinoLitComponent } from "@nanarino/lit/dist/all.js"
 // 或按需:
-import { NanarinoLitComponent } from "@nanarinostyl/lit/dist/base"
+import { NanarinoLitComponent } from "@nanarino/lit/dist/base"
 
 const provides = Array.from(
     document.querySelectorAll("link[data-nanarino-lit-provide]")
@@ -120,7 +102,7 @@ for (const css of provides
 </section>
 ```
 
-按需須要單獨註冊，如 `import "@nanarinostyl/lit/dist/Pagination/index.js"` 以使用 `<na-pagination />`
+按需須要單獨註冊，如 `import "@nanarino/lit/dist/Pagination/index.js"` 以使用 `<na-pagination />`
 
 ### 避免[FOUC](https://en.wikipedia.org/wiki/Flash_of_unstyled_content)
 

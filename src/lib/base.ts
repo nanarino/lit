@@ -3,7 +3,7 @@ import {
     type CSSResultGroup,
     // unsafeCSS,
 } from "lit"
-// import adoptedStyle from "nanarinostyl?raw"
+// import adoptedStyle from "@nanarino/stylus?raw"
 
 
 /**
