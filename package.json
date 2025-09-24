@@ -1,5 +1,5 @@
 {
-    "name": "@nanarinostyl/lit",
+    "name": "@nanarino/lit",
     "type": "module",
     "version": "1.0.0",
     "main": "./dist/all.js",
