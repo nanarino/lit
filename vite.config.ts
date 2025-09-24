@@ -34,7 +34,7 @@ export default defineConfig({
     plugins: [
         dts({
             include: ["./src/lib"],
-            // 全部要用: --> dist/na-lit.js
+            // 全部要用: --> dist/all.js
             // bundleTypes: true,
             compilerOptions: {
                 types: ["astro/client"],
@@ -45,7 +45,7 @@ export default defineConfig({
         lib: {
             // 按需可搖: --> dist/[components]/index.js
             entry,
-            // 全部要用: --> dist/na-lit.js
+            // 全部要用: --> dist/all.js
             // entry: resolve("./src/lib/all.ts"),
             formats: ["es"],
         },

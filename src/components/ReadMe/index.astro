@@ -50,9 +50,8 @@ import dedent from "dedent"
     元件暫時未計劃發佈到
     <a class="na-code na-link" href="https://www.npmjs.com/" target="_blank">
         npm
-    </a> ，可以從源程式碼自订構建出
-    <code class="na-code na-code-no-bg">na-lit</code>
-    （ <code class="na-code">na-lit/dist/all.js</code>或按需 ） 放置在自己專案的 <code
+    </a> ，可以從源程式碼自订構建
+    （ <code class="na-code">/dist/all.js</code>或按需 ） 放置在自己專案的 <code
         class="na-code na-code-no-bg">assets</code
     > 或 <code class="na-code na-code-no-bg">public</code> 目錄中， 或者直接拷貝到自己的專案
 </p>
@@ -96,7 +95,7 @@ import dedent from "dedent"
                 []
             )
             .reverse()) {
-            // 點解要用try 見 https://github.com/nanarino/na-lit/issues/1
+            // 點解要用try 見 https://github.com/nanarino/lit/issues/1
             try {
                 NanarinoLitComponent.adoptedStyle.insertRule(css.cssText)
             } catch (error) {

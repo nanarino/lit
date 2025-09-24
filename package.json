@@ -7,14 +7,14 @@
         "dev": "astro dev --host",
         "build": "vite build",
         "build:docs": "astro build",
-        "build:gh-pages": "astro build --base /na-lit/",
+        "build:gh-pages": "astro build --base /lit/",
         "preview": "astro preview"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/nanarino/na-lit.git"
+        "url": "git+https://github.com/nanarino/lit.git"
     },
-    "homepage": "https://nanarino.github.io/na-lit/",
+    "homepage": "https://nanarino.github.io/lit/",
     "keywords": [
         "ui",
         "lit"
@@ -22,7 +22,7 @@
     "author": "kogawananari",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/nanarino/na-lit/issues"
+        "url": "https://github.com/nanarino/lit/issues"
     },
     "peerDependencies": {
         "@nanarino/stylus": "^1.0.0"

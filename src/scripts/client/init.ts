@@ -21,7 +21,7 @@ for (const css of provides
         []
     )
     .reverse()) {
-    // 點解要用try 見 https://github.com/nanarino/na-lit/issues/1
+    // 點解要用try 見 https://github.com/nanarino/lit/issues/1
     try {
         NanarinoLitComponent.adoptedStyle.insertRule(css.cssText)
     } catch (error) {
