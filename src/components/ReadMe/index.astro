@@ -46,19 +46,28 @@ import dedent from "dedent"
 
 <h4 class="na-title">套用元件</h4>
 
-<p class="na-paragraph">
+<p class="na-paragraph" style="text-decoration: line-through">
     元件暫時未計劃發佈到
     <a class="na-code na-link" href="https://www.npmjs.com/" target="_blank">
         npm
-    </a> ，可以從源程式碼自订構建
-    （ <code class="na-code">/dist/all.js</code>或按需 ） 放置在自己專案的 <code
-        class="na-code na-code-no-bg">assets</code
-    > 或 <code class="na-code na-code-no-bg">public</code> 目錄中， 或者直接拷貝到自己的專案
+    </a> ，可以從源程式碼自订構建（
+    <code class="na-code">/dist/all.js</code>或按需 ）放置在自己專案的
+    <code class="na-code na-code-no-bg">assets</code>
+    或
+    <code class="na-code na-code-no-bg">public</code> 目錄中， 或者直接拷貝到自己的專案
+</p>
+
+<p class="na-paragraph" style="text-decoration: line-through">
+    分支 <code class="na-code na-code-no-bg">#prepare</code> 安裝時觸發自動構建,
+    在ts的裝飾器默認開啓之前是<b>必須</b>的
 </p>
 
 <p class="na-paragraph">
-    分支 <code class="na-code na-code-no-bg">#prepare</code> 安裝時觸發自動構建,
-    在ts的裝飾器默認開啓之前是<b>必須</b>的
+    而今可以直接從
+    <a class="na-code na-link" href="https://www.npmjs.com/" target="_blank">
+        npm
+    </a>
+    安裝
 </p>
 
 <Code
@@ -118,9 +127,7 @@ import dedent from "dedent"
 
 <p class="na-paragraph">
     按需須要單獨宣告，如 (
-    <code class="na-code"
-        >import "@nanarino/lit/dist/Pagination/index.js"</code
-    >
+    <code class="na-code">import "@nanarino/lit/dist/Pagination/index.js"</code>
     以使用 <code class="na-code na-code-no-bg">{`<na-pagination />`}</code>)
 </p>
 
