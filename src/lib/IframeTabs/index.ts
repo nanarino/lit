@@ -17,7 +17,7 @@ export interface IframeTabsProps {
      *     { src: '/home', title: 'home', key: '114514', closeable: false }
      * ]" />
      * ```
-     * 
+     *
      */
     data?: IframeAttrs[]
 }
@@ -27,6 +27,7 @@ export type IframeAttrs = {
     title: string
     key: string
     closeable?: boolean
+    outerHTML?: string
 }
 
 export interface IframeTabsEmits {
@@ -45,16 +46,17 @@ export class IframeTabs
 {
     @property({ type: String }) active: string = ""
     @property({ type: Array, attribute: false }) data: IframeAttrs[] = []
+    @property({ type: String }) size: "md" | "lg" = "md"
 
     @queryAll("iframe")
     iframes!: NodeListOf<HTMLIFrameElement>
 
-    @query("iframe[data-active]")
+    @query("[data-active]>iframe")
     activeIframe?: HTMLIFrameElement
 
     render() {
         return html`
-            <ul class="na-layout-header">
+            <ul class="na-layout-header na-tabs ${this.size}">
                 ${repeat(
                     this.data,
                     i => i.key,
@@ -82,7 +84,7 @@ export class IframeTabs
                                 ${attrs.title}
                             </button>
                             <button
-                                class="na-tab-close"
+                                class="na-tab-operation"
                                 @click=${() => {
                                     if (
                                         this.renderRoot.dispatchEvent(
@@ -120,11 +122,22 @@ export class IframeTabs
                     this.data,
                     i => i.key,
                     attrs =>
-                        html`<iframe
-                            title="${attrs.title}"
-                            src="${attrs.src}"
-                            ?data-active=${this.active === attrs.key}
-                        ></iframe>`
+                        attrs.outerHTML
+                            ? html`<div
+                                  class="na-tab-panel"
+                                  ?data-active=${this.active === attrs.key}
+                              >
+                                  ${unsafeHTML(attrs.outerHTML)}
+                              </div>`
+                            : html`<div
+                                  class="na-tab-panel"
+                                  ?data-active=${this.active === attrs.key}
+                              >
+                                  <iframe
+                                      title="${attrs.title}"
+                                      src="${attrs.src}"
+                                  ></iframe>
+                              </div>`
                 )}
             </main>
         `
@@ -137,58 +150,6 @@ export class IframeTabs
             flex: 1;
             width: 100%;
             gap: 2px;
-            --font-size-tabs: var(--font-size-body);
-            --line-height-tabs: var(--line-height-body);
-        }
-
-        ul {
-            display: flex;
-            gap: 8px;
-            padding: 0 8px;
-            list-style: none;
-            margin: 0;
-            height: calc(var(--line-height-tabs) + 9px);
-            overflow-y: hidden;
-            white-space: nowrap;
-            background-color: rgb(var(--background-color-tabs, var(--white)));
-        }
-
-        /* 隱藏過多頁簽時出現的滾動條,但是大螢幕 */
-        @media screen and (min-width: 768px) {
-            ul ::-webkit-scrollbar {
-                width: 0;
-                height: 0;
-            }
-        }
-        @media screen and (min-width: 768px) {
-            ul {
-                scrollbar-width: none;
-            }
-        }
-
-        .na-tab {
-            display: flex;
-            align-items: center;
-            gap: 2px;
-            margin: 0 8px;
-        }
-
-        .na-tab-name {
-            padding: 3px 0;
-            font-size: var(--font-size-tabs);
-            line-height: var(--line-height-tabs);
-            border-width: 2px 0;
-            border-style: solid;
-            border-color: transparent;
-        }
-
-        .na-tab:where(:not([data-active])) .na-tab-name {
-            cursor: pointer;
-        }
-
-        .na-tab:where([data-active]) .na-tab-name {
-            border-bottom-color: rgb(var(--color-tab, var(--primary-6)));
-            color: rgb(var(--color-tab, var(--primary-6)));
         }
 
         main {
@@ -196,43 +157,23 @@ export class IframeTabs
             overflow-y: hidden;
         }
 
+        .na-tab-panel {
+            display: none;
+        }
+
+        .na-tab-panel[data-active] {
+            display: contents;
+        }
+
         iframe {
             width: 100%;
             height: 100%;
             border: none;
-            display: none;
-        }
-        iframe[data-active] {
-            display: grid;
-        }
-
-        button {
-            padding: 0;
-            margin: 0;
-            border: 0;
-            outline: 0;
-            background: none;
-            font-family: inherit;
-            font-style: inherit;
-            color: inherit;
-        }
-
-        button:hover {
-            opacity: 1;
-            color: rgb(var(--color-tab, var(--primary-6)));
-        }
-
-        .na-tab-close {
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            height: fit-content;
-            opacity: 0.3;
         }
 
         button svg {
-            width: var(--font-size-body);
-            height: var(--font-size-body);
+            width: var(--font-size-tabs, var(--font-size-body));
+            height: var(--font-size-tabs, var(--font-size-body));
         }
     `
 }
