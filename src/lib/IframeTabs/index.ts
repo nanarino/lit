@@ -50,7 +50,7 @@ export class IframeTabs
     iframes!: NodeListOf<HTMLIFrameElement>
 
     @query("iframe[data-active]")
-    activedIframe?: HTMLIFrameElement
+    activeIframe?: HTMLIFrameElement
 
     render() {
         return html`
