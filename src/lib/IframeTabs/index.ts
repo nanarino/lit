@@ -20,6 +20,7 @@ export interface IframeTabsProps {
      *
      */
     data?: IframeAttrs[]
+    size?: "md" | "lg"
 }
 
 export type IframeAttrs = {
