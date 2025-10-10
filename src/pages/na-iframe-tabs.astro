@@ -8,7 +8,7 @@ import App from "@/layouts/app.astro"
     </script>
     <section>
         <!-- 這是僅僅適用於顯示IFRAME的頁簽集合 -->
-        <na-iframe-tabs id="tabs" active="jigsaw"></na-iframe-tabs>
+        <na-iframe-tabs id="tabs" active="jigsaw" size="lg"></na-iframe-tabs>
     </section>
     <script>
         import type { IframeAttrs } from "@/lib/IframeTabs"
@@ -46,6 +46,25 @@ import App from "@/layouts/app.astro"
                     key: "python",
                     src: base + "games/python",
                     title: "貪吃蛇",
+                },
+                {
+                    key: "outerHTML",
+                    src: "",
+                    title: "文本",
+                    outerHTML: `<pre><code class="na-font-mono">
+                        ╭◜◝ ͡ ◜ ╮ 
+                        (    好想    ) 
+                        ╰◟ ͜ ╭◜◝ ͡ ◜ ͡ ◝  ╮
+                        　 　 (  有人v50   )
+                        ╭◜◝ ͡ ◜◝ ͡  ◜ ╮◞ ╯
+                        (   请我吃KFC  ) 
+                        ╰◟ ͜ ◞ ͜ ◟ ͜ ◞◞╯ ╭◜◝ ͡ ◜ ͡ ◝  ╮
+                                        (  有人v50   )
+                        ╭◜◝ ͡ ◜◝ ͡  ◜ ╮ ╰◟ ◞ ͜ ◟ ͜ ◞╯
+                        (   请我吃KFC  ) 
+                        ╰◟ ͜ ◞ ͜ ◟ ͜ ◞◞╯
+                        ₍ᐢ..ᐢ₎ᐝ
+                    </code></pre>`
                 },
             ]
             // 由于 `tabs.data` 是不可變的, 無法響應 `pop`, `push`, `splice`
