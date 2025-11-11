@@ -1,7 +1,7 @@
 {
     "name": "@nanarino/lit",
     "type": "module",
-    "version": "1.0.1",
+    "version": "1.0.3",
     "main": "./dist/all.js",
     "scripts": {
         "dev": "astro dev --host",
@@ -33,16 +33,16 @@
     "devDependencies": {
         "@fontsource/jetbrains-mono": "^5.2.8",
         "@holy-two/data-theme": "^0.0.6",
-        "@microsoft/api-extractor": "^7.53.1",
-        "@shikijs/transformers": "^3.13.0",
-        "@types/node": "^22.18.9",
-        "astro": "^5.14.3",
+        "@microsoft/api-extractor": "^7.54.0",
+        "@shikijs/transformers": "^3.15.0",
+        "@types/node": "^22.19.0",
+        "astro": "^5.15.5",
         "css-doodle": "^0.42.6",
         "dedent": "^1.7.0",
         "iconify-icon": "^2.3.0",
-        "style-to-object": "^1.0.11",
+        "style-to-object": "^1.0.12",
         "unplugin-dts": "1.0.0-beta.6",
-        "vite": "^6.3.6"
+        "vite": "^6.4.1"
     },
     "pnpm": {
         "overrides": {

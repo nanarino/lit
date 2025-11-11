@@ -68,7 +68,7 @@ export class IframeTabs
                         >
                             <button
                                 class="na-tab-name"
-                                @click=${() => {
+                                @click=${(event: MouseEvent) => {
                                     if (
                                         this.renderRoot.dispatchEvent(
                                             new CustomEvent("tab-change", {
@@ -78,8 +78,16 @@ export class IframeTabs
                                                 cancelable: true,
                                             })
                                         )
-                                    )
+                                    ) {
                                         this.active = attrs.key
+                                        ;(
+                                            event.target as HTMLButtonElement | null
+                                        )?.scrollIntoView({
+                                            behavior: "smooth",
+                                            block: "nearest",
+                                            inline: "start",
+                                        })
+                                    }
                                 }}
                             >
                                 ${attrs.title}
