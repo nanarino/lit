@@ -85,7 +85,7 @@ export class IframeTabs
                                         )?.scrollIntoView({
                                             behavior: "smooth",
                                             block: "nearest",
-                                            inline: "start",
+                                            inline: "center",
                                         })
                                     }
                                 }}
