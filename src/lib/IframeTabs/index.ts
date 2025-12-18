@@ -63,7 +63,7 @@ export class IframeTabs
                     i => i.key,
                     attrs => {
                         const handleClose = () => {
-                            if (!attrs.closeable) return
+                            if (attrs.closeable === false) return
                             if (
                                 this.renderRoot.dispatchEvent(
                                     new CustomEvent("tab-close", {
