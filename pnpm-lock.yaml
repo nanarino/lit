@@ -12,7 +12,7 @@ importers:
   .:
     dependencies:
       '@nanarino/stylus':
-        specifier: ^1.0.3
+        specifier: ^1.0.4
         version: 1.0.4(stylus@0.64.0)
       lit:
         specifier: ^3.3.1

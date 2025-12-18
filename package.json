@@ -1,7 +1,7 @@
 {
     "name": "@nanarino/lit",
     "type": "module",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "main": "./dist/all.js",
     "scripts": {
         "dev": "astro dev --host",
@@ -25,7 +25,7 @@
         "url": "https://github.com/nanarino/lit/issues"
     },
     "peerDependencies": {
-        "@nanarino/stylus": "^1.0.3"
+        "@nanarino/stylus": "^1.0.4"
     },
     "dependencies": {
         "lit": "^3.3.1"
