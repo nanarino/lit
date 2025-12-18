@@ -61,69 +61,90 @@ export class IframeTabs
                 ${repeat(
                     this.data,
                     i => i.key,
-                    attrs => html`
-                        <li
-                            class="na-tab"
-                            ?data-active=${this.active === attrs.key}
-                        >
-                            <button
-                                class="na-tab-name"
-                                @click=${(event: MouseEvent) => {
-                                    if (
-                                        this.renderRoot.dispatchEvent(
-                                            new CustomEvent("tab-change", {
-                                                bubbles: true,
-                                                composed: true,
-                                                detail: attrs,
-                                                cancelable: true,
-                                            })
-                                        )
-                                    ) {
-                                        this.active = attrs.key
-                                        ;(
-                                            event.target as HTMLButtonElement | null
-                                        )?.scrollIntoView({
-                                            behavior: "smooth",
-                                            block: "nearest",
-                                            inline: "center",
-                                        })
-                                    }
-                                }}
+                    attrs => {
+                        const handleClose = () => {
+                            if (
+                                this.renderRoot.dispatchEvent(
+                                    new CustomEvent("tab-close", {
+                                        bubbles: true,
+                                        composed: true,
+                                        detail: attrs,
+                                        cancelable: true,
+                                    })
+                                )
+                            ) {
+                                const index = this.data.indexOf(attrs)
+                                this.data = this.data.filter(
+                                    item => item.key !== attrs.key
+                                )
+                                if (this.active === attrs.key) {
+                                    this.active =
+                                        this.data.at(index)?.key ??
+                                        this.data.at(-1)?.key ??
+                                        ""
+                                }
+                            }
+                        }
+                        let pressedInside = false
+                        return html`
+                            <li
+                                class="na-tab"
+                                ?data-active=${this.active === attrs.key}
                             >
-                                ${attrs.title}
-                            </button>
-                            <button
-                                class="na-tab-operation"
-                                @click=${() => {
-                                    if (
-                                        this.renderRoot.dispatchEvent(
-                                            new CustomEvent("tab-close", {
-                                                bubbles: true,
-                                                composed: true,
-                                                detail: attrs,
-                                                cancelable: true,
+                                <button
+                                    class="na-tab-name"
+                                    @click=${(event: MouseEvent) => {
+                                        if (
+                                            this.renderRoot.dispatchEvent(
+                                                new CustomEvent("tab-change", {
+                                                    bubbles: true,
+                                                    composed: true,
+                                                    detail: attrs,
+                                                    cancelable: true,
+                                                })
+                                            )
+                                        ) {
+                                            this.active = attrs.key
+                                            ;(
+                                                event.target as HTMLButtonElement | null
+                                            )?.scrollIntoView({
+                                                behavior: "smooth",
+                                                block: "nearest",
+                                                inline: "center",
                                             })
-                                        )
-                                    ) {
-                                        const index = this.data.indexOf(attrs)
-                                        this.data = this.data.filter(
-                                            item => item.key !== attrs.key
-                                        )
-                                        if (this.active === attrs.key) {
-                                            this.active =
-                                                this.data.at(index)?.key ??
-                                                this.data.at(-1)?.key ??
-                                                ""
                                         }
-                                    }
-                                }}
-                            >
-                                ${unsafeHTML(
-                                    attrs.closeable ?? true ? close : ""
-                                )}
-                            </button>
-                        </li>
-                    `
+                                    }}
+                                    @mousedown=${(event: MouseEvent) => {
+                                        if (event.button === 1) {
+                                            pressedInside = true
+                                            event.preventDefault()
+                                        }
+                                    }}
+                                    @mouseup=${(event: MouseEvent) => {
+                                        if (
+                                            pressedInside &&
+                                            event.button === 1
+                                        ) {
+                                            handleClose()
+                                            event.preventDefault()
+                                        }
+                                        pressedInside = false
+                                    }}
+                                    @mouseleave=${() => (pressedInside = false)}
+                                >
+                                    ${attrs.title}
+                                </button>
+                                <button
+                                    class="na-tab-operation"
+                                    @click=${handleClose}
+                                >
+                                    ${unsafeHTML(
+                                        attrs.closeable ?? true ? close : ""
+                                    )}
+                                </button>
+                            </li>
+                        `
+                    }
                 )}
             </ul>
             <main class="na-layout-content">
