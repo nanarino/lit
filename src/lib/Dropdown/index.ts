@@ -80,6 +80,11 @@ export class Dropdown extends NanarinoLitComponent implements DropdownProps {
     static styles = css`
         :host {
             display: inline-flex;
+            --gap-dialog-form: var(--gap-dropdown, 4px);
+        }
+
+        form[method="dialog"] {
+            grid-template-columns: var(--grid-template-columns-dropdown, 1fr);
         }
 
         button {

@@ -72,7 +72,7 @@ export class Dropdown extends NanarinoLitComponent implements DropdownProps {
                 <slot></slot>
             </button>
             <dialog
-                class="na-popover sm"
+                class="na-popover"
                 id="${this._id}"
                 ${ref(this.dialogRef)}
                 popover="${this.dialogPopover}"
@@ -88,6 +88,7 @@ export class Dropdown extends NanarinoLitComponent implements DropdownProps {
     static styles = css`
         :host {
             display: inline-flex;
+            --gap-dialog-form: var(--gap-dropdown, 4px);
         }
 
         .na-popover-wrapper {
@@ -97,8 +98,15 @@ export class Dropdown extends NanarinoLitComponent implements DropdownProps {
         .na-popover {
             position-anchor: --popover-wrapper;
             left: anchor(center);
-            top: calc(anchor(bottom) + 8px);
+            top: calc(
+                anchor(bottom) +
+                    var(--margin-top-dropdown, var(--gap-dialog-form))
+            );
             transform: translateX(-50%);
+        }
+
+        form[method="dialog"] {
+            grid-template-columns: var(--grid-template-columns-dropdown, 1fr);
         }
 
         button {

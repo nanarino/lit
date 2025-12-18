@@ -58,7 +58,7 @@ export class Dropdown extends NanarinoLitComponent implements DropdownProps {
                 ${ref(this.dialogRef)}
                 popover="${this.dialogPopover}"
             ></dialog>
-            <div class="na-dropdown sm" style="${this.dialogStyle}">
+            <div class="na-dropdown" style="${this.dialogStyle}">
                 <slot name="dropdown"></slot>
             </div>
         </div>`
@@ -67,6 +67,7 @@ export class Dropdown extends NanarinoLitComponent implements DropdownProps {
     static styles = css`
         :host {
             display: inline-flex;
+            --gap-dialog-form: var(--gap-dropdown, 4px);
         }
 
         button {
