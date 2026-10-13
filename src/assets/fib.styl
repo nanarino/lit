@@ -3,13 +3,13 @@
     viewBox: -300 -300 600 600;
     circle * 1800 {
         fill: @pick(
-            rgb(var(--green-3)),
-            rgb(var(--green-4)),
-            rgb(var(--green-5)),
-            rgb(var(--green-6)),
-            rgb(var(--green-7)),
-            rgb(var(--green-8)),
-            rgb(var(--green-9)),
+            oklch(var(--green-3)),
+            oklch(var(--green-4)),
+            oklch(var(--green-5)),
+            oklch(var(--green-6)),
+            oklch(var(--green-7)),
+            oklch(var(--green-8)),
+            oklch(var(--green-9)),
         );
         r: @sqrt(@n / 60);
         cx: $(@n * .6180339887498949 ^4 * cos(2π * @n *.6180339887498949));

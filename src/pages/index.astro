@@ -12,33 +12,35 @@ const base = import.meta.env.BASE_URL
 ---
 
 <App github="https://github.com/nanarino/lit">
-    <header>
-        <css-doodle>{fib}</css-doodle>
+    <div class="hero">
+        <header>
+            <css-doodle>{fib}</css-doodle>
 
-        <nav class="logo">
-            <a
-                class="clover"
-                title="@nanarino/stylus"
-                href="https://nanarino.github.io/stylus/"
-                target="_blank"
-            >
-                <Fragment set:html={clover} />
-                <i>nanarino stylus design</i>
-            </a>
-            <a class="lit" title="lit" href="https://lit.dev/" target="_blank">
-                <Fragment set:html={lit} />
-                <i>lit element</i>
-            </a>
-        </nav>
-        <h1 class="na-font-mono" style="font-size: 5.5rem;font-weight: 400;">
-            {"<na-lit/>"}
-        </h1>
-        <p class="na-paragraph" data-size="4" style="margin: 0;">
-            一個<span class="na-font-mono">
-                @nanarino/stylus
-            </span>設計語言試作的<span class="na-font-mono"> lit </span>元件合集
-        </p>
-    </header>
+            <nav class="logo">
+                <a
+                    class="clover"
+                    title="@nanarino/stylus"
+                    href="https://nanarino.github.io/stylus/"
+                    target="_blank"
+                >
+                    <Fragment set:html={clover} />
+                    <i>nanarino stylus design</i>
+                </a>
+                <a class="lit" title="lit" href="https://lit.dev/" target="_blank">
+                    <Fragment set:html={lit} />
+                    <i>lit element</i>
+                </a>
+            </nav>
+            <h1 class="na-font-mono" style="font-size: 5.5rem;font-weight: 400;">
+                {"<na-lit/>"}
+            </h1>
+            <p class="na-paragraph" data-size="4" style="margin: 0;">
+                一個<span class="na-font-mono">
+                    @nanarino/stylus
+                </span>設計語言試作的<span class="na-font-mono"> lit </span>元件合集
+            </p>
+        </header>
+    </div>
     <nav class="pages">
         <h2 class="na-title" style="padding: 0 2rem;">元件列表</h2>
         <Menu menu={menu} base={base} />
@@ -67,8 +69,10 @@ const base = import.meta.env.BASE_URL
         }
 
         css-doodle {
+            border-bottom: 8px solid oklch(var(--black));
             position: absolute;
             inset: 0;
+            bottom: -8px;
         }
 
         h1,
@@ -81,6 +85,41 @@ const base = import.meta.env.BASE_URL
             :root[data-theme="dark"] & {
                 color: #f0f;
             }
+        }
+    }
+
+    /*
+     * 多出来的一屏滚动距离里 header 吸顶，css-doodle 先被推出画面；
+     * 这段滚完 sticky 松开，页面才继续往下走。
+     */
+    @supports (animation-timeline: view()) {
+        @media (prefers-reduced-motion: no-preference) {
+            .hero {
+                height: 200vh;
+                view-timeline-name: --hero;
+                view-timeline-axis: block;
+
+                @supports (height: 100dvh) {
+                    height: 200dvh;
+                }
+            }
+
+            header {
+                position: sticky;
+                top: 0;
+
+                css-doodle {
+                    animation: doodle-exit linear both;
+                    animation-timeline: --hero;
+                    animation-range: contain 0% contain 100%;
+                }
+            }
+        }
+    }
+
+    @keyframes doodle-exit {
+        to {
+            transform: translateY(-100%);
         }
     }
 
@@ -148,8 +187,8 @@ const base = import.meta.env.BASE_URL
 
     nav.pages {
         padding: 2em;
-        background-color: rgb(var(--black));
-        color: rgb(var(--gray-1));
+        background-color: oklch(var(--black));
+        color: oklch(var(--gray-1));
     }
 
     main.readme {

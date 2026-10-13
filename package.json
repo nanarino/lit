@@ -1,7 +1,7 @@
 {
     "name": "@nanarino/lit",
     "type": "module",
-    "version": "1.1.0",
+    "version": "2.0.2",
     "main": "./dist/all.js",
     "scripts": {
         "dev": "astro dev --host",
@@ -25,28 +25,29 @@
         "url": "https://github.com/nanarino/lit/issues"
     },
     "peerDependencies": {
-        "@nanarino/stylus": "^1.0.4"
+        "@nanarino/stylus": "^2.0.2"
     },
     "dependencies": {
-        "lit": "^3.3.2"
+        "lit": "^3.3.3"
     },
     "devDependencies": {
-        "@fontsource/jetbrains-mono": "^5.2.8",
+        "@fontsource/jetbrains-mono": "^5.3.0",
         "@holy-two/data-theme": "^0.0.6",
-        "@microsoft/api-extractor": "^7.57.7",
-        "@shikijs/transformers": "^3.23.0",
-        "@types/node": "^22.19.15",
-        "astro": "^6.0.8",
+        "@microsoft/api-extractor": "^7.59.4",
+        "@shikijs/transformers": "^4.5.0",
+        "@types/node": "^22.20.5",
+        "astro": "^7.3.8",
         "css-doodle": "^0.42.6",
         "dedent": "^1.7.2",
         "iconify-icon": "^2.3.0",
         "style-to-object": "^1.0.14",
         "unplugin-dts": "1.0.0-beta.6",
-        "vite": "^6.4.1"
+        "vite": "^8.3.4"
     },
     "pnpm": {
         "overrides": {
-            "vite": "$vite"
+            "vite": "$vite",
+            "@shikijs/transformers": "$@shikijs/transformers"
         }
     },
     "files": [

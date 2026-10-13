@@ -204,7 +204,7 @@ export class Pagination
         button[data-ellipsis] {
             background-color: transparent;
             pointer-events: none;
-            color: rgb(var(--gray-5));
+            color: oklch(var(--gray-5));
         }
 
         button svg {
