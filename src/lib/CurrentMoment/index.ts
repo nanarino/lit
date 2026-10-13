@@ -70,7 +70,7 @@ export class CurrentMoment
         }
 
         :host([data-primary]) {
-            color: rgb(var(--color-current-moment, var(--primary-7)));
+            color: oklch(var(--color-current-moment, var(--primary-7)));
         }
 
         section.na-paragraph {
