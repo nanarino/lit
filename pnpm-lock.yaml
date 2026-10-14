@@ -13,8 +13,8 @@ importers:
   .:
     dependencies:
       '@nanarino/stylus':
-        specifier: ^2.0.0
-        version: 2.0.0(stylus@0.64.0)
+        specifier: ^2.0.1
+        version: 2.0.1(stylus@0.64.0)
       lit:
         specifier: ^3.3.3
         version: 3.3.3
@@ -610,8 +610,8 @@ packages:
   '@microsoft/tsdoc@0.17.1':
     resolution: {integrity: sha512-VHyYyyoH63jFoO3shpw9Zfijk5v/9p/VrClW35z0/q6ooK7sSmxpzOkS4iZPxs3vO4XtBW4H38HRAKkAMIK7DA==}
 
-  '@nanarino/stylus@2.0.0':
-    resolution: {integrity: sha512-dcfd7x4bgQLTYx/Lchnrzay5Q55sf/3ctREj+mV8W8M2BGqu20knE2oga+85yu1ZNKQ4sC4T1a9M54toc/VipA==}
+  '@nanarino/stylus@2.0.1':
+    resolution: {integrity: sha512-lFgOSIdyucG3hvDw3dQPLhVRkpnXUf7tsEUfTbMMK+TDj7zMjSB3s5eiDs7YR0zRggzqtHnLwL7N5gzm+FXNUA==}
     peerDependencies:
       stylus: ^0.64.0
 
@@ -2537,7 +2537,7 @@ snapshots:
 
   '@microsoft/tsdoc@0.17.1': {}
 
-  '@nanarino/stylus@2.0.0(stylus@0.64.0)':
+  '@nanarino/stylus@2.0.1(stylus@0.64.0)':
     dependencies:
       stylus: 0.64.0
 
