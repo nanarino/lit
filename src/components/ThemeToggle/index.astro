@@ -3,10 +3,21 @@
     <iconify-icon icon="line-md:sunny"></iconify-icon>
 </button>
 <script>
+    import type { IframeTabs } from "@/lib/IframeTabs"
     import toggle from "@holy-two/data-theme/dist/toggle"
     document.addEventListener("astro:page-load", () => {
         const BUTTON = document.getElementById("theme-toggle")
-        BUTTON && (BUTTON.onclick = toggle)
+        if (!BUTTON) return
+        BUTTON.onclick = () => {
+            toggle()
+            ;(
+                document.getElementById("tabs") as IframeTabs | null
+            )?.iframes.forEach(
+                ({ contentDocument }) =>
+                    contentDocument /* dev环境下因为跨域变成null */ &&
+                    toggle(window.theme, contentDocument.documentElement),
+            )
+        }
     })
 </script>
 <style>
