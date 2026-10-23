@@ -36,7 +36,7 @@ if (is_spec) {
         // 不支援嵌套
         code = code.replace(
             /(\s)*\/\/ code-ignore-start[\s\S]*?\/\/ code-ignore-end/g,
-            ""
+            "",
         )
     }
 }
@@ -125,12 +125,8 @@ const transformers: Parameters<typeof Code>[0]["transformers"] = [
 </style>
 
 <style is:global>
-    .line.diff.add {
-        background-color: oklch(var(--success-1));
-    }
-    .line.diff.remove {
-        background-color: oklch(var(--danger-1));
-    }
+    /* .line.diff.add */
+    /* .line.diff.remove */
     .highlighted-word {
         border: 2pt solid oklch(var(--primary-3));
         border-radius: var(--border-radius-sm);

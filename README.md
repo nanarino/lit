@@ -1,7 +1,7 @@
 # @nanarino/lit
 
 [![pnpm v9](https://img.shields.io/badge/maintained%20with-pnpm%209.15-cc00ff.svg?style=for-the-badge&logo=pnpm)](https://pnpm.io/)
-[![nodejs v22](https://img.shields.io/badge/Node.js-v22.12-026e00.svg?style=for-the-badge&logo=nodedotjs)](https://nodejs.org/)
+[![nodejs v24](https://img.shields.io/badge/Node.js-v24.19-026e00.svg?style=for-the-badge&logo=nodedotjs)](https://nodejs.org/)
 
 一個 [@nanarino/stylus](https://nanarino.github.io/stylus/) 主題的 [lit](https://lit.dev/) 元件合集
 

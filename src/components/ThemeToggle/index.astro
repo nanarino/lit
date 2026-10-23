@@ -1,10 +1,96 @@
-<button id="theme-toggle" class="na-button" title="theme toggle" data-round>
+---
+import { GLASS, displacementHref } from "./liquid-glass"
+const mapHref = displacementHref(GLASS.size, GLASS.size)
+---
+
+<button
+    id="theme-toggle"
+    type="button"
+    title="theme toggle"
+    aria-label="theme toggle"
+    style={`--glass-size: ${GLASS.size}px`}
+>
     <iconify-icon icon="line-md:moon-simple"></iconify-icon>
     <iconify-icon icon="line-md:sunny"></iconify-icon>
+    <svg class="filter" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+            <filter id="theme-toggle-glass" color-interpolation-filters="sRGB">
+                <feImage
+                    href={mapHref}
+                    x="0"
+                    y="0"
+                    width="100%"
+                    height="100%"
+                    result="map"></feImage>
+                <feDisplacementMap
+                    in="SourceGraphic"
+                    in2="map"
+                    xChannelSelector="R"
+                    yChannelSelector="B"
+                    scale={GLASS.scale + GLASS.rOffset}
+                    result="dispRed"></feDisplacementMap>
+                <feColorMatrix
+                    in="dispRed"
+                    type="matrix"
+                    values="1 0 0 0 0
+                            0 0 0 0 0
+                            0 0 0 0 0
+                            0 0 0 1 0"
+                    result="red"></feColorMatrix>
+                <feDisplacementMap
+                    in="SourceGraphic"
+                    in2="map"
+                    xChannelSelector="R"
+                    yChannelSelector="B"
+                    scale={GLASS.scale + GLASS.gOffset}
+                    result="dispGreen"></feDisplacementMap>
+                <feColorMatrix
+                    in="dispGreen"
+                    type="matrix"
+                    values="0 0 0 0 0
+                            0 1 0 0 0
+                            0 0 0 0 0
+                            0 0 0 1 0"
+                    result="green"></feColorMatrix>
+                <feDisplacementMap
+                    in="SourceGraphic"
+                    in2="map"
+                    xChannelSelector="R"
+                    yChannelSelector="B"
+                    scale={GLASS.scale + GLASS.bOffset}
+                    result="dispBlue"></feDisplacementMap>
+                <feColorMatrix
+                    in="dispBlue"
+                    type="matrix"
+                    values="0 0 0 0 0
+                            0 0 0 0 0
+                            0 0 1 0 0
+                            0 0 0 1 0"
+                    result="blue"></feColorMatrix>
+                <feBlend in="red" in2="green" mode="screen" result="rg"
+                ></feBlend>
+                <feBlend in="rg" in2="blue" mode="screen" result="output"
+                ></feBlend>
+                <feGaussianBlur stdDeviation={GLASS.displace}></feGaussianBlur>
+            </filter>
+        </defs>
+    </svg>
 </button>
 <script>
     import type { IframeTabs } from "@/lib/IframeTabs"
     import toggle from "@holy-two/data-theme/dist/toggle"
+    import { displacementHref } from "./liquid-glass"
+
+    let glassObserver: ResizeObserver | undefined
+
+    const paintGlass = (button: HTMLElement) => {
+        const width = button.offsetWidth
+        const height = button.offsetHeight
+        const image = button.querySelector("feImage")
+        if (!width || !height || !image) return
+        image.setAttribute("href", displacementHref(width, height))
+    }
+
     document.addEventListener("astro:page-load", () => {
         const BUTTON = document.getElementById("theme-toggle")
         if (!BUTTON) return
@@ -18,30 +104,133 @@
                     toggle(window.theme, contentDocument.documentElement),
             )
         }
+
+        const liquid =
+            CSS.supports("backdrop-filter", "url('#theme-toggle-glass')") ||
+            CSS.supports(
+                "-webkit-backdrop-filter",
+                "url('#theme-toggle-glass')",
+            )
+        if (liquid) {
+            BUTTON.style.backdropFilter = "url(#theme-toggle-glass)"
+            BUTTON.style.setProperty(
+                "-webkit-backdrop-filter",
+                "url(#theme-toggle-glass)",
+            )
+        }
+
+        glassObserver?.disconnect()
+        glassObserver = new ResizeObserver(() => paintGlass(BUTTON))
+        glassObserver.observe(BUTTON)
+        paintGlass(BUTTON)
     })
 </script>
 <style>
     button {
+        --glass-size: 56px;
+
         position: fixed;
         z-index: 9;
-        bottom: 16px;
         right: 16px;
+        bottom: 16px;
+        isolation: isolate;
+
+        width: var(--glass-size);
+        height: var(--glass-size);
+        padding: 0;
+        box-sizing: border-box;
+        border: none;
+        border-radius: 50%;
 
         display: grid;
-        --padding-horizontal-button: 16px;
+        place-items: center;
+        appearance: none;
+        cursor: pointer;
+        user-select: none;
+        color: oklch(var(--black));
+
+        background-color: light-dark(
+            hsl(0 0% 100% / 0.34),
+            hsl(0 0% 100% / 0.14)
+        );
+        background-image: linear-gradient(
+            165deg,
+            hsl(0 0% 100% / 0.38),
+            transparent 46%
+        );
+        -webkit-backdrop-filter: blur(14px) saturate(1.8);
+        backdrop-filter: blur(14px) saturate(1.8);
+
+        box-shadow:
+            0 0 0 1px light-dark(hsl(0 0% 100% / 0.72), hsl(0 0% 100% / 0.22))
+                inset,
+            0 1px 1px hsl(0 0% 100% / 0.45) inset,
+            0 0 2px 1px
+                light-dark(
+                    color-mix(in oklch, canvasText, #0000 82%),
+                    color-mix(in oklch, canvasText, #0000 88%)
+                )
+                inset,
+            0 0 10px 4px
+                light-dark(
+                    color-mix(in oklch, canvasText, #0000 90%),
+                    color-mix(in oklch, canvasText, #0000 94%)
+                )
+                inset,
+            0 4px 16px hsl(240 10% 8% / 0.08),
+            0 10px 28px hsl(240 10% 8% / 0.1);
+
+        transition:
+            transform 0.25s ease,
+            background-color 0.25s ease,
+            box-shadow 0.25s ease;
 
         & iconify-icon {
-            grid-area: 1/1/2/2;
-            transition: opacity 0.3s;
+            position: relative;
+            z-index: 1;
+            grid-area: 1 / 1;
             font-size: 24px;
+            transition: opacity 0.3s ease;
+        }
+
+        &:hover {
+            background-color: light-dark(
+                hsl(0 0% 100% / 0.5),
+                hsl(0 0% 100% / 0.22)
+            );
+            transform: scale(1.06);
+        }
+
+        &:active {
+            transform: scale(0.96);
+        }
+
+        &:focus-visible {
+            outline: 2px solid oklch(var(--outline-color-any--focus));
+            outline-offset: 3px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            &,
+            & iconify-icon {
+                transition: none;
+            }
         }
     }
 
-    :root[data-theme="light"] button iconify-icon:first-child {
+    .filter {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+    }
+
+    :root[data-theme="light"] button > [icon]:first-of-type {
         opacity: 0;
     }
 
-    :root[data-theme="dark"] button iconify-icon:last-child {
+    :root[data-theme="dark"] button > [icon]:last-of-type {
         opacity: 0;
     }
 </style>

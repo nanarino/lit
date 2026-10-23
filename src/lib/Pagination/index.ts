@@ -29,7 +29,7 @@ export interface PaginationProps {
 
 export interface PaginationEmits {
     onPageTo: (
-        e: CustomEvent<number>
+        e: CustomEvent<number>,
     ) => void | boolean | Promise<void> | Promise<boolean>
 }
 
@@ -70,7 +70,7 @@ export class Pagination
                         composed: true,
                         detail: to,
                         cancelable: true,
-                    })
+                    }),
                 )
             )
                 this.onChange?.((this.current = to))
@@ -118,7 +118,7 @@ export class Pagination
                     Math.max(
                         idx.at(5)! - this.current,
                         this.current - idx.at(-6)!,
-                        2
+                        2,
                     ) ||
                 (i == idx.at(1) && this.current == idx.at(3)) ||
                 (i == idx.at(-2) && this.current == idx.at(-4)) ||
@@ -174,7 +174,7 @@ export class Pagination
                     >
                         ${btn.innerText}
                     </button>
-                `
+                `,
             )}
             <button
                 class="na-button"

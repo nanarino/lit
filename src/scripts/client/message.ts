@@ -31,7 +31,7 @@ export class Launcher {
                    * 额外的样式 需要设置primary后才生效
                    */
                   style?: Record<string, string>
-              }
+              },
     ) {
         const msg = document.createElement("div")
         let duration: number = 2000

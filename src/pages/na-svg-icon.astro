@@ -43,11 +43,9 @@ import right from "@/assets/right.svg"
         async function onload() {
             // code-ignore-start
             const loadingElements = document.querySelectorAll(":not(:defined)")
-            const tags = new Set(
-                [...loadingElements].map(ele => ele.localName)
-            )
+            const tags = new Set([...loadingElements].map(ele => ele.localName))
             await Promise.all(
-                [...tags].map(tag => customElements.whenDefined(tag))
+                [...tags].map(tag => customElements.whenDefined(tag)),
             )
             // code-ignore-end
             for (const element of document.querySelectorAll("na-svg-icon")) {

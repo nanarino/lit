@@ -12,13 +12,13 @@ document.addEventListener("astro:after-swap", () => {
 
 // 影子DOM内部樣式復用外部的全局樣式
 const provides = Array.from(
-    document.querySelectorAll("link[data-nanarino-lit-provide]")
+    document.querySelectorAll("link[data-nanarino-lit-provide]"),
 ) as HTMLLinkElement[]
 
 for (const css of provides
     .reduce(
         (rules: CSSRule[], link) => [...rules, ...(link.sheet?.cssRules ?? [])],
-        []
+        [],
     )
     .reverse()) {
     // 點解要用try 見 https://github.com/nanarino/lit/issues/1

@@ -53,7 +53,7 @@ export class Dropdown extends NanarinoLitComponent implements DropdownProps {
                         dialog.close()
                         this._will_close = false
                     },
-                    this.closesoon ? 0 : 600
+                    this.closesoon ? 0 : 600,
                 )
             }
         }

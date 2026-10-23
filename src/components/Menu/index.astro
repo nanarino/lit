@@ -27,7 +27,7 @@ const items = Astro.props.menu
                         name="menu"
                         class="na-menu"
                         open={RegExp(`^${base}${item.path}`).test(
-                            Astro.url.pathname
+                            Astro.url.pathname,
                         )}
                         style="order:1"
                     >
@@ -81,7 +81,9 @@ const items = Astro.props.menu
 </nav>
 
 <style>
-    .na-menu-item {
-        color: oklch(var(--gray-2));
+    nav {
+        --color-menu-item: var(--gray-2);
+        --color-menu-item--hover: var(--black);
+        --background-color-menu-item--hover: var(--primary-6);
     }
 </style>

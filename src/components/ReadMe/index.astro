@@ -2,6 +2,7 @@
 import Code from "../Code/index.astro"
 import dedent from "dedent"
 // 就一個 readme 不想引入 mdx
+// script 標籤拆開寫：結束標籤字面量會被編譯器插反斜線；完整標籤也會讓編輯器把字串當 HTML 上色。
 ---
 
 <h3 class="na-title">先決條件</h3>
@@ -14,7 +15,7 @@ import dedent from "dedent"
 />
 
 <p class="na-paragraph">
-    這裏設置了一個辨識度比較高的字形（ 蒹葭楷F-港標），用來檢驗樣式是否正確注入
+    這裏設置了一個辨識度比較高的字形（蒹葭楷F-港標），用來檢驗樣式是否正確注入
 </p>
 
 <Code
@@ -35,7 +36,7 @@ import dedent from "dedent"
                     onload="document.documentElement.style.setProperty('--font-family-base', 'ChienChia-F')"
                 />
                 <!-- 初始化客户端 -->
-                <script src="@/scripts/client/init"></script>
+                <${"script"} src="@/scripts/client/init"></${"script"}>
             </head>
             <body>
                 <slot />
@@ -46,9 +47,13 @@ import dedent from "dedent"
 
 <h4 class="na-title">套用元件</h4>
 
-<p class="na-paragraph" style="text-decoration: line-through">
+<p class="na-paragraph text-decoration-line">
     元件暫時未計劃發佈到
-    <a class="na-code na-link" href="https://www.npmjs.com/" target="_blank">
+    <a
+        class="na-code na-link na-link-space"
+        href="https://www.npmjs.com/"
+        target="_blank"
+    >
         npm
     </a> ，可以從源程式碼自订構建（
     <code class="na-code">/dist/all.js</code>或按需 ）放置在自己專案的
@@ -57,14 +62,19 @@ import dedent from "dedent"
     <code class="na-code na-code-no-bg">public</code> 目錄中， 或者直接拷貝到自己的專案
 </p>
 
-<p class="na-paragraph" style="text-decoration: line-through">
-    分支 <code class="na-code na-code-no-bg">#prepare</code> 安裝時觸發自動構建,
-    在ts的裝飾器默認開啓之前是<b>必須</b>的
+<p class="na-paragraph text-decoration-line">
+    分支 <code class="na-code na-code-no-bg">#prepare</code> 安裝時觸發自動構建, 在ts的裝飾器默認開啓之前是<b
+        >必須</b
+    >的
 </p>
 
 <p class="na-paragraph">
     而今可以直接從
-    <a class="na-code na-link" href="https://www.npmjs.com/" target="_blank">
+    <a
+        class="na-code na-link na-link-space"
+        href="https://www.npmjs.com/"
+        target="_blank"
+    >
         npm
     </a>
     安裝
@@ -134,7 +144,7 @@ import dedent from "dedent"
 <h4 class="na-title">
     避免
     <a
-        class="na-link"
+        class="na-link na-link-space"
         href="https://en.wikipedia.org/wiki/Flash_of_unstyled_content"
         target="_blank"
     >
@@ -156,5 +166,14 @@ import dedent from "dedent"
 <style>
     .na-code-no-bg {
         --background-color-code: 0 0 0 / 0;
+    }
+    .na-link-space {
+        margin: 0 0.25em;
+    }
+    .text-decoration-line {
+        text-decoration: line-through;
+        * {
+            text-decoration: inherit;
+        }
     }
 </style>

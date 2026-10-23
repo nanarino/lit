@@ -20,7 +20,7 @@ import App from "@/layouts/app.astro"
             const loadingElements = document.querySelectorAll(":not(:defined)")
             const tags = new Set([...loadingElements].map(ele => ele.localName))
             await Promise.all(
-                [...tags].map(tag => customElements.whenDefined(tag))
+                [...tags].map(tag => customElements.whenDefined(tag)),
             )
             // code-ignore-end
             const tabs = document.querySelector("na-iframe-tabs")
@@ -64,7 +64,7 @@ import App from "@/layouts/app.astro"
                         (   请我吃KFC  ) 
                         ╰◟ ͜ ◞ ͜ ◟ ͜ ◞◞╯
                         ₍ᐢ..ᐢ₎ᐝ
-                    </code></pre>`
+                    </code></pre>`,
                 },
             ]
             // 由于 `tabs.data` 是不可變的, 無法響應 `pop`, `push`, `splice`

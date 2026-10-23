@@ -29,6 +29,12 @@ interface Props {
 }
 
 <style>
+    @property --hue-primary {
+        syntax: "<number>";
+        inherits: true;
+        initial-value: 0;
+    }
+
     footer {
         display: flex;
         gap: 0.5em;
@@ -37,6 +43,27 @@ interface Props {
         line-height: var(--line-height-2);
         font-size: var(--font-size-2);
         color: oklch(var(--gray-8));
-        --color-link-hover: var(--primary-8);
+    }
+
+    [title="github"] {
+        --color-link: var(--lightness-6) var(--chroma-6) var(--hue-primary);
+        --color-link--hover: var(--lightness-4) var(--chroma-4)
+            var(--hue-primary);
+        animation: hue-primary 6s linear infinite;
+    }
+
+    @keyframes hue-primary {
+        from {
+            --hue-primary: 0;
+        }
+        to {
+            --hue-primary: 360;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        footer iconify-icon {
+            animation: none;
+        }
     }
 </style>

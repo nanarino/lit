@@ -38,6 +38,10 @@ const github = Astro.props.github || Astro.props.frontmatter?.github
                 display: none;
             }
         </style>
+        <script is:inline>
+            if (localStorage.getItem("theme") === null)
+                localStorage.setItem("theme", "dark")
+        </script>
         <script is:inline fetchpriority="high" src={themeIIFE}></script>
         <FontInject />
         <ClientRouter />
@@ -46,7 +50,7 @@ const github = Astro.props.github || Astro.props.frontmatter?.github
         <script src="@/scripts/client/init"></script>
     </head>
     <body>
-        <ThemeToggle style="opacity: .8" />
+        <ThemeToggle />
         <slot />
         <Code />
         <Footer github={github} />
