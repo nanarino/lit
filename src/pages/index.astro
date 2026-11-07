@@ -198,14 +198,17 @@ const base = import.meta.env.BASE_URL
     }
 
     nav.pages {
-        padding: 1px 1em 2em 1em;
-        margin: 0 2em;
+        padding: 1px 0 2em;
+        margin: 0 var(--space-section, 2rem);
         border-radius: 2em;
         background-color: oklch(var(--black));
         color: oklch(var(--gray-1));
     }
 
     main.readme {
-        padding: 4em;
+        padding: calc(var(--space-section, 2rem) + 2rem);
+        :global(.na-pre) {
+            margin: 0 -1rem;
+        }
     }
 </style>

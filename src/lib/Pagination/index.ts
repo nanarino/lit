@@ -34,11 +34,12 @@ export interface PaginationEmits {
 }
 
 export interface PageButton {
-    attribute: {
-        disabled: boolean
-        "data-ellipsis": boolean
-        "data-primary": boolean
-        "data-to"?: string
+    disabled: boolean
+    attrs: {
+        current?: boolean
+        ellipsis: boolean
+        primary: boolean
+        to?: number
     }
     innerText: string
 }
@@ -104,11 +105,12 @@ export class Pagination
         for (const i of idx) {
             if (i === this.current) {
                 pages.push({
-                    attribute: {
-                        disabled: true,
-                        "data-ellipsis": false,
-                        "data-primary": true,
-                        "data-to": `${i}`,
+                    disabled: false,
+                    attrs: {
+                        current: true,
+                        ellipsis: false,
+                        primary: true,
+                        to: i,
                     },
                     innerText: `${i}`,
                 })
@@ -126,20 +128,20 @@ export class Pagination
                 i === idx.at(-1)
             ) {
                 pages.push({
-                    attribute: {
-                        disabled: false,
-                        "data-ellipsis": false,
-                        "data-primary": false,
-                        "data-to": `${i}`,
+                    disabled: false,
+                    attrs: {
+                        ellipsis: false,
+                        primary: false,
+                        to: i,
                     },
                     innerText: `${i}`,
                 })
             } else if (i === idx.at(1) || i === idx.at(-2)) {
                 pages.push({
-                    attribute: {
-                        disabled: false,
-                        "data-ellipsis": true,
-                        "data-primary": false,
+                    disabled: false,
+                    attrs: {
+                        ellipsis: true,
+                        primary: false,
                     },
                     innerText: `...`,
                 })
@@ -167,10 +169,11 @@ export class Pagination
                 btn => html`
                     <button
                         class="na-button"
-                        ?disabled=${btn.attribute.disabled}
-                        ?data-primary=${btn.attribute["data-primary"]}
-                        ?data-ellipsis=${btn.attribute["data-ellipsis"]}
-                        data-to="${btn.attribute["data-to"]}"
+                        ?disabled=${btn.disabled}
+                        ?data-current=${btn.attrs["current"]}
+                        ?data-primary=${btn.attrs["primary"]}
+                        ?data-ellipsis=${btn.attrs["ellipsis"]}
+                        data-to="${btn.attrs["to"]}"
                     >
                         ${btn.innerText}
                     </button>
@@ -199,18 +202,22 @@ export class Pagination
                     var(--padding-vertical-button, 5px) * 2
             );
             overflow: hidden;
-        }
 
-        button[data-ellipsis] {
-            background-color: transparent;
-            pointer-events: none;
-            color: oklch(var(--gray-5));
-        }
+            &[data-current] {
+                pointer-events: none;
+            }
 
-        button svg {
-            pointer-events: none;
-            width: 1em;
-            height: 1em;
+            &[data-ellipsis] {
+                background-color: transparent;
+                pointer-events: none;
+                color: oklch(var(--gray-5));
+            }
+
+            svg {
+                pointer-events: none;
+                width: 1em;
+                height: 1em;
+            }
         }
     `
 }

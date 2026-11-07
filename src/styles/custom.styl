@@ -31,3 +31,14 @@ color_alias_dict = {
 :root
 [data-primary]
     mixin_primary_channels()
+
+// 主题色支援逐帧渐变
+@property --hue-primary
+    syntax "<number>"
+    inherits true
+    initial-value 0
+
+// 移动端间隔
+:root
+    @media screen and (max-width: 1024px)
+        --space-section 1rem

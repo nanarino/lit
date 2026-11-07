@@ -33,16 +33,16 @@
     "devDependencies": {
         "@fontsource/jetbrains-mono": "^5.3.0",
         "@holy-two/data-theme": "^0.0.7",
-        "@microsoft/api-extractor": "^7.59.4",
-        "@shikijs/transformers": "^4.5.0",
+        "@microsoft/api-extractor": "^7.60.1",
+        "@shikijs/transformers": "^4.6.0",
         "@types/node": "^24.19.2",
-        "astro": "^7.3.8",
+        "astro": "^7.4.7",
         "css-doodle": "^0.42.6",
         "dedent": "^1.7.2",
         "iconify-icon": "^2.3.0",
         "style-to-object": "^1.0.14",
         "unplugin-dts": "1.0.0-beta.6",
-        "vite": "^8.3.4"
+        "vite": "^8.3.6"
     },
     "pnpm": {
         "overrides": {

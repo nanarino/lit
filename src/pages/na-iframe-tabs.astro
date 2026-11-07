@@ -27,20 +27,20 @@ import App from "@/layouts/app.astro"
             tabs!.data = [
                 {
                     key: "jigsaw",
-                    src: "https://nanarino.github.io/jigsaw/?img=0",
-                    title: "拼圖1",
+                    src: "https://nanarino.github.io/jigsaw/?url=/vue/images/IMG_2568.JPG",
+                    title: "拼圖-夜景",
                     closeable: false,
                 },
                 {
                     key: "jigsaw1",
-                    src: "https://nanarino.github.io/jigsaw/?img=1",
-                    title: "拼圖2",
+                    src: "https://nanarino.github.io/jigsaw/?url=/vue/images/IMG_2532.JPG",
+                    title: "拼圖-人像",
                     closeable: true, // 默認為 true
                 },
                 {
                     key: "jigsaw2",
-                    src: "https://nanarino.github.io/jigsaw/?img=2",
-                    title: "拼圖3",
+                    src: "https://nanarino.github.io/jigsaw/?url=/vue/images/IMG_2674.JPG",
+                    title: "拼圖-動物",
                 },
                 {
                     key: "python",
@@ -99,9 +99,13 @@ import App from "@/layouts/app.astro"
 
 <style>
     section {
-        padding: 2rem;
+        padding: var(--space-section, 2rem);
         display: flex;
         flex-direction: column;
         align-items: start;
+    }
+
+    na-iframe-tabs {
+        min-height: max(55vh, 406px);
     }
 </style>
